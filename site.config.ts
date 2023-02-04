@@ -18,7 +18,9 @@ export const config = {
     branch: "main",
   },
   nav: [
-    { name: "Home", emoji: "house", href: "/" },
+    { name: "About", href: "/about" },
+    { name: "Posts", href: "/posts" },
+    { name: "Resume", href: "https://blogcdn.vigue.me/Resume.pdf" }
   ],
   footer: {
     links: [

@@ -16,7 +16,7 @@ export default async function Page() {
   if (!data) notFound();
 
   return (
-    <main className="mx-auto mb-16 flex w-full flex-col items-center justify-center">
+    <main className="mx-auto mb-16 mt-8 md:mt-16 flex w-full flex-col items-center justify-center">
       <div className="mb-4 flex flex-col gap-4 max-w-6xl w-full">
         <div className="inline-flex flex-wrap items-end gap-4 md:gap-8">
           <h4 className="inline text-3xl font-bold uppercase leading-none tracking-tight text-pink-600">All Posts</h4>

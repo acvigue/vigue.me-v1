@@ -34,7 +34,7 @@ export default async function Page({ params: { slug } }) {
   const { post, pagination, not_found } = await getData(slug);
 
   if (not_found) notFound();
-  console.log(pagination);
+
   return (
     <main className=" mb-16 flex w-full flex-col items-center justify-center pt-4">
       <div className="container relative mx-auto lg:max-w-6xl mb-8 md:mb-16">
