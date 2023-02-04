@@ -1,6 +1,5 @@
 import { getPages, getPage } from "@/lib/ghost";
-import { GhostContent, NotionContent } from "@/lib/render";
-import { getPlainText } from "@/lib/utils";
+import { GhostContent } from "@/lib/render";
 import { notFound } from "next/navigation";
 
 export const revalidate = 3600;
