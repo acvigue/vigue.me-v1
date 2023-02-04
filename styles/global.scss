@@ -101,3 +101,11 @@ input[type="text"],
 input[type="email"] {
   appearance: none;
 }
+
+.masonry {
+  -webkit-column-break-inside: avoid;
+}
+
+.masonry div::before { 
+  transform: translate3d(0, 0, 0);
+}

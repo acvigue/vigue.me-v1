@@ -2,7 +2,8 @@ import config from "@/config";
 
 const title = config.name;
 const description = config.description;
-const SEO = {
+const DefaultSEO = {
+  useAppDir: true,
   title,
   titleTemplate: `%s - ${title}`,
   description,
@@ -25,4 +26,4 @@ const SEO = {
   },
 };
 
-export default SEO;
+export default DefaultSEO;
