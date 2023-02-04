@@ -117,7 +117,6 @@ production stylesheet in assets/built/screen.css
     font-size: clamp(1.92rem, 5vw, 3.12rem);
     font-weight: 800;
     line-height: 1.05;
-    color: var(--color-darkgrey);
 }
 
 .has-serif-title .article-title {
@@ -129,7 +128,6 @@ production stylesheet in assets/built/screen.css
     max-width: 720px;
     font-size: 1.2rem;
     line-height: 1.45;
-    color: var(--color-darkgrey);
 }
 
 .gh-canvas .article-image {
@@ -219,7 +217,6 @@ headings, text, images and lists. We deal with cards lower down. */
 /* [id] represents all headings h1-h6, reset all margins */
 .gh-content > [id] {
     margin: 0;
-    color: var(--color-darkgrey);
 }
 
 .has-serif-title .gh-content > [id] {
@@ -545,7 +542,6 @@ iframe.instagram-media + script + :not([id]) {
 }
 
 .gh-content table:not(.gist table) th {
-    color: var(--color-darkgrey);
     font-size: 0.96rem;
     font-weight: 700;
     letter-spacing: 0.2px;
@@ -1009,3 +1005,13 @@ file to add some of your own styles. Well, you've come to
 the right place. Onward!
 
  */
+
+.gh-content ul {
+    list-style: disc;
+}
+
+.gh-content h2 {
+    font-size: 1.7rem;
+    font-weight: 600;
+    color: rgb(219 39 119);
+}

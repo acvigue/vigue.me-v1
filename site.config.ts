@@ -1,6 +1,13 @@
 export const config = {
   name: "Aiden Vigue",
   shortName: "Aiden",
+  roles: [
+    "I'm a Software Engineer.",
+    "I create websites.",
+    "I design user interfaces.",
+    "I'm an eager learner.",
+    "I make things."
+  ],
   headshot: "https://images.weserv.nl/?url=https://github.com/acvigue.png&h=300&w=300&fit=cover&mask=circle&l=9&output=webp&q=63",
   description: "I'm a Web Developer who likes building beautiful web interfaces & experiences.",
   email: "aiden@vigue.me",

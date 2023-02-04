@@ -25,21 +25,21 @@ export default async function Page() {
   return (
     <>
       <main className="mx-auto mb-16 flex w-full flex-col items-center justify-center">
-        <div className="mt-8 md:mt-16 mb-4 flex flex-col gap-4 max-w-6xl w-full">
+        <div className="mt-8 md:mt-32 md:mb-16 flex flex-col gap-4 max-w-6xl w-full">
           <div className="inline-flex flex-wrap items-end gap-4 md:gap-8">
-            <h4 className="inline text-lg md:text-3xl font-bold uppercase leading-none text-pink-600">Hello, my name is {config.shortName}</h4>
+            <h4 className="inline text-lg md:text-2xl font-bold uppercase leading-none text-pink-600">Hello, my name is {config.shortName}</h4>
           </div>
-          <div className="italic text-gray-500 dark:text-gray-400 text-5xl">
-            <div className="md:hidden">
-              I&apos;m a student
+          <div className="text-7xl font-serif text-gray-700 dark:text-white">
+            <div>
+              I make things.
             </div>
+            {/*
             <div className="md:block hidden">
-              <RoleScramble />
+              <RoleScramble roles={config.roles}/>
             </div>
+            */}
           </div>
-          <div className="mt-6 ">
-            <GhostContent html={data.page.html ?? ""}/>
-          </div>
+          <div className="text-lg mt-2 dark:text-gray-400 text-gray-700 md:text-xl font-medium leading-none antialiased" dangerouslySetInnerHTML={{__html: data.page.html}}/>
         </div>
         <div className="prose max-w-6xl w-full dark:prose-dark mt-6">
           <div className="text-sm font-bold uppercase text-pink-600">

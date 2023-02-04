@@ -3,20 +3,11 @@
 import { useScramble } from "use-scramble";
 import { useEffect, useState } from "react";
 
-const roles = [
-  "'m a Software Engineer.",
-  " create websites.",
-  " design user interfaces.",
-  "'m an OSS contributor.",
-  " work with embedded technologies.",
-  "'m a tinkerer.",
-  "'m a student.",
-  "'m a maker.",
-];
+let globalRoles = [];
 
 function* randomRole(): Generator<string> {
   // shuffle array
-  const shuffled = roles.sort(() => 0.5 - Math.random());
+  const shuffled = globalRoles.sort(() => 0.5 - Math.random());
 
   let i = 0;
 
@@ -26,8 +17,9 @@ function* randomRole(): Generator<string> {
   }
 }
 
-export default function RoleScramble() {
-  const [role, setRole] = useState<string>(randomRole().next().value);
+export default function RoleScramble({roles}) {
+  globalRoles = roles;
+  const [role, setRole] = useState<string>(globalRoles[0]);
   const { ref } = useScramble({
     text: role,
     overdrive: false,
@@ -49,11 +41,8 @@ export default function RoleScramble() {
   }, []);
 
   return (
-    <span>
-      I
-      <span ref={ref}>
-        &nbsp;m a student.
-      </span>
+    <span ref={ref}>
+      {globalRoles[0]}
     </span>
   );
 }

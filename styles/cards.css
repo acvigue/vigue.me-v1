@@ -453,6 +453,11 @@
     opacity:.7
 }
 
+.kg-bookmark-metadata > img {
+    padding-right: 0.5rem;
+    height: 1.5rem;
+}
+
 .kg-bookmark-icon {
     width: 20px;
     height: 20px;
@@ -1332,6 +1337,10 @@
     display: flex;
     flex-direction: column;
     align-items:center
+}
+
+.kg-video-container > video {
+    border-radius: 0.25rem;
 }
 
 .kg-video-large-play-icon, .kg-video-overlay {

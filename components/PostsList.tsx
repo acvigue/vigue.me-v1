@@ -20,7 +20,7 @@ export default function PostsList({ posts, search }: { posts: PostOrPage[], sear
 
   return (
     <>
-      {(!search) || (
+      {(search) && (
         <div className="relative w-full">
         <input
           aria-label={`Search through ${filteredPosts.length} articles`}

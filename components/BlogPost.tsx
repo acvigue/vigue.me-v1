@@ -1,8 +1,6 @@
 import Link from "next/link";
 import { format } from "date-fns";
 import { PostOrPage } from "@tryghost/content-api";
-import { FiHeart } from "react-icons/fi";
-import ClientImage from "./ClientImage";
 
 export default function BlogPost({ title, excerpt, slug, published_at, feature_image, tags, featured }: PostOrPage) {
   return (
@@ -20,12 +18,18 @@ export default function BlogPost({ title, excerpt, slug, published_at, feature_i
             </div>
             <div className="rounded absolute top-0 left-0 w-full h-full group-hover:opacity-100 opacity-0 bg-gradient-to-t from-black to-transparent transition transform-gpu duration-300"/>
           </div>
-          <div className={`px-6 py-4 w-full h-full absolute top-0 left-0 bg-gradient-to-b from-black to-transparent rounded flex flex-col justify-between`}>
+          <div className="px-6 py-4 w-full h-full absolute top-0 left-0 bg-gradient-to-b from-black to-transparent rounded flex flex-col justify-between">
             <div>
               <div className="text-lg font-medium text-white md:text-xl">{title}</div>
-              <div className={`font-mono text-sm md:text-lg text-white opacity-0 group-hover:opacity-100 md:mb-0 transition transform-gpu duration-300 line-clamp-3`}>
+              <div className="font-mono text-sm md:text-md text-white opacity-0 group-hover:opacity-100 md:mb-0 transition transform-gpu duration-300 line-clamp-4">
                 {excerpt}
               </div>
+            </div>
+            <div className="font-mono text-xs text-white opacity-0 group-hover:opacity-100 transition transform-gpu duration-300">
+              {format(Date.parse(published_at), "MMMM d, yyyy")}
+              {(featured) && (
+                <>&nbsp;•&nbsp;Featured</>
+              )}
             </div>
           </div>
         </div>
