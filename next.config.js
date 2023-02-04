@@ -3,7 +3,7 @@ module.exports = {
   reactStrictMode: true,
   experimental: { appDir: true },
   images: {
-    domains: ["maximousblk.me", "proxy.maximousblk.me", "images.weserv.nl", "cdn.jsdelivr.net", "s3.us-west-2.amazonaws.com"],
+    domains: ["vigue.me", "blogcdn.vigue.me"],
   },
   webpack: (config, { dev, isServer }) => {
     if (!dev && !isServer) {
@@ -37,13 +37,13 @@ module.exports = {
         permanent: true,
       },
       {
-        source: "/pgp",
-        destination: "https://keybase.io/maximousblk/pgp_keys.asc",
+        source: "/socials-ring",
+        destination: "https://links.vigue.me",
         permanent: false,
       },
       {
         source: "/sponsor",
-        destination: "https://github.com/sponsors/maximousblk",
+        destination: "https://github.com/sponsors/acvigue",
         permanent: true,
       },
     ];

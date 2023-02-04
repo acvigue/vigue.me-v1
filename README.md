@@ -1,4 +1,4 @@
-# maximousblk.me
+# vigue.me
 
 My personal blog.
 

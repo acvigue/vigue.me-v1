@@ -4,21 +4,14 @@ import { useScramble } from "use-scramble";
 import { useEffect, useState } from "react";
 
 const roles = [
-  "Software Engineer",
-  "Web Developer",
-  "UI/UX Designer",
-  "Open Source Contributor",
-  "IoT/Embedded Enthusiast",
-  "AI/ML Enthusiast",
-  "Tech Enthusiast",
-  "Crypto Bro",
-  "Tinkerer",
-  "Student",
-  "Learner",
-  "Hacker",
-  "Maker",
-  "Gamer",
-  "Nerd",
+  "'m a Software Engineer.",
+  " create websites.",
+  " design user interfaces.",
+  "'m an OSS contributor.",
+  " work with embedded technologies.",
+  "'m a tinkerer.",
+  "'m a student.",
+  "'m a maker.",
 ];
 
 function* randomRole(): Generator<string> {
@@ -56,8 +49,11 @@ export default function RoleScramble() {
   }, []);
 
   return (
-    <span ref={ref} className="font-mono italic text-gray-500 dark:text-gray-400">
-      Web Developer
+    <span>
+      I
+      <span ref={ref}>
+        &nbsp;m a student.
+      </span>
     </span>
   );
 }

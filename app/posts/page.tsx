@@ -1,39 +1,30 @@
+import { getPosts } from "@/lib/ghost";
+import { notFound } from "next/navigation";
 import PostsList from "@/components/PostsList";
-import { parseISO } from "date-fns";
-
-import { getSiteMap } from "@/lib/notion";
 
 export const revalidate = 3600;
 
 async function getData() {
-  const {
-    posts: { children: posts },
-  } = await getSiteMap();
+  const posts = await getPosts({ fields: ['feature_image', 'published_at', 'excerpt', 'slug', 'title', 'id', 'featured']});
 
-  return posts
-    .filter(({ published }) => {
-      return published;
-    })
-    .map(({ title, description, slug, properties: { date } }) => {
-      return {
-        title,
-        description,
-        slug,
-        publishedAt: parseISO(date[date.type].start).getTime(),
-      };
-    })
-    .sort((a, b) => {
-      return b.publishedAt - a.publishedAt;
-    });
+  return posts;
 }
 
-export default async function Posts() {
-  const posts = await getData();
+export default async function Page() {
+  const data = await getData();
+
+  if (!data) notFound();
 
   return (
-    <main className="mx-auto mb-16 flex w-full max-w-4xl flex-col items-start justify-center">
-      <h1 className="mb-8 text-3xl font-bold tracking-tight text-black dark:text-white md:text-5xl">Posts</h1>
-      <PostsList posts={posts} />
+    <main className="mx-auto mb-16 flex w-full flex-col items-center justify-center">
+      <div className="mb-4 flex flex-col gap-4 max-w-6xl w-full">
+        <div className="inline-flex flex-wrap items-end gap-4 md:gap-8">
+          <h4 className="inline text-3xl font-bold uppercase leading-none tracking-tight text-pink-600">All Posts</h4>
+        </div>
+      </div>
+      <div className="prose max-w-6xl w-full dark:prose-dark mt-4">
+        <PostsList posts={data} search={true}/>
+      </div>
     </main>
   );
 }

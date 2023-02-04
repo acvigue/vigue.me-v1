@@ -1,25 +1,26 @@
 import Link from "next/link";
 import { format } from "date-fns";
+import { PostOrPage } from "@tryghost/content-api";
+import { FiHeart } from "react-icons/fi";
+import ClientImage from "./ClientImage";
 
-interface Attributes {
-  title: string;
-  description: string;
-  slug: string;
-  publishedAt: Date | number;
-}
-
-export default function BlogPost({ title, description, slug, publishedAt }: Attributes) {
+export default function BlogPost({ title, excerpt, slug, published_at, feature_image, tags, featured }: PostOrPage) {
   return (
-    <div>
-      <Link href={`/posts/${slug}`} className="w-full">
-        <div className="mb-4 mt-8 w-full">
-          <div className="flex flex-col justify-between md:flex-row">
-            <h4 className="mb-2 w-full text-lg font-medium text-gray-900 dark:text-gray-100 md:text-xl">{title}</h4>
-            <p className="mb-4 w-32 text-left font-mono text-gray-500 dark:text-gray-500 md:mb-0 md:text-right">
-              {publishedAt && format(publishedAt, "MMM, yyy")}
-            </p>
+    <div className="w-full rounded mb-4 hover:scale-95 hover:z-50 hover:translate-x-2 hover:skew-y-1 transition transform duration-300">
+      <Link href={`/posts/${slug}`}>
+        <div className="rounded shadow-2xl group bg-gray-700 relative w-full ">
+          <div className="rounded bg-gradient-to-b from-black to-black">
+            <img className="rounded w-full bg-cover -z-10" src={feature_image} alt="Sunset in the mountains"/>
+            <div className="rounded absolute top-0 left-0 w-full h-full group-hover:opacity-100 opacity-0 bg-gradient-to-t from-black to-transparent transition transform duration-300"/>
           </div>
-          <p className="text-gray-600 dark:text-gray-400">{description}</p>
+          <div className={`px-6 py-4 w-full h-full absolute top-0 left-0 bg-gradient-to-b from-black to-transparent rounded flex flex-col justify-between`}>
+            <div>
+              <div className="text-lg font-medium text-white md:text-xl">{title}</div>
+              <div className={`font-mono text-sm md:text-lg text-white opacity-0 group-hover:opacity-100 md:mb-0 transition transform duration-300 line-clamp-3`}>
+                {excerpt}
+              </div>
+            </div>
+          </div>
         </div>
       </Link>
     </div>

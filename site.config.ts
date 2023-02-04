@@ -1,17 +1,17 @@
 export const config = {
-  name: "Maximous Black",
+  name: "Aiden Vigue",
+  shortName: "Aiden",
+  headshot: "https://images.weserv.nl/?url=https://github.com/acvigue.png&h=300&w=300&fit=cover&mask=circle&l=9&output=webp&q=63",
   description: "I'm a Web Developer who likes building beautiful web interfaces & experiences.",
-  email: "maximousblk@gmail.com",
-  username: "maximousblk",
-  baseUrl: "https://next.maximousblk.me",
+  email: "aiden@vigue.me",
+  username: "acvigue",
+  baseUrl: "https://vigue.me",
   repo: {
-    name: "maximousblk/maximousblk.me",
+    name: "acvigue/vigue.me",
     branch: "main",
   },
   nav: [
     { name: "Home", emoji: "house", href: "/" },
-    { name: "Posts", emoji: "feather", href: "/posts" },
-    { name: "Tools", emoji: "hammer_and_wrench", href: "/uses" },
   ],
   footer: {
     links: [
@@ -23,7 +23,7 @@ export const config = {
       {
         name: "GitHub",
         icon: "FiGithub",
-        href: "https://github.com/maximousblk",
+        href: "https://github.com/acvigue",
       },
       {
         name: "Figma",
@@ -43,7 +43,7 @@ export const config = {
       {
         name: "GMail",
         icon: "FiMail",
-        href: "mailto:maximousblk@gmail.com",
+        href: "mailto:aiden@vigue.me",
       },
     ],
   },

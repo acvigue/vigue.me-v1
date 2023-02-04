@@ -1,25 +1,11 @@
-import { getSiteMap, getPage } from "@/lib/notion";
 import SEO from "./seo";
 
 import config from "@/config";
-import { getPlainText } from "@/lib/utils";
 
 export const revalidate = 3600;
 
-async function getData() {
-  const index = await getSiteMap();
-
-  const page = await getPage(index.home.id);
-
-  if (!page) return null;
-
-  const title = getPlainText(page.properties.title["title"]);
-
-  return { title };
-}
-
 export default async function Head() {
-  const { title } = await getData();
+  const title = config.name;
 
   const { description, baseUrl: url } = config;
 
@@ -41,7 +27,6 @@ export default async function Head() {
       <meta name="apple-mobile-web-app-capable" content="yes" />
       <meta name="apple-mobile-web-app-status-bar-style" content="default" />
       <meta name="apple-mobile-web-app-title" content={config.name} />
-      <meta name="description" content={config.description} />
       <meta name="format-detection" content="telephone=no" />
       <meta name="mobile-web-app-capable" content="yes" />
       <meta name="theme-color" content="#111827" />

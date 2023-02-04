@@ -1,4 +1,6 @@
 import "@/styles/global.scss";
+import "@/styles/casper.css";
+import "@/styles/cards.css";
 
 import "@fontsource/inter";
 import "@fontsource/lora";

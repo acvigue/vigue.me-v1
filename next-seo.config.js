@@ -10,7 +10,7 @@ const SEO = {
   // canonical: config.baseUrl,
   openGraph: {
     type: "website",
-    locale: "en_IE",
+    locale: "en_US",
     url: config.baseUrl,
     title,
     description,
@@ -22,11 +22,6 @@ const SEO = {
         height: 720,
       },
     ],
-  },
-  twitter: {
-    handle: "@" + config.username,
-    site: "@" + config.username,
-    cardType: "summary_large_image",
   },
 };
 
