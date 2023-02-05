@@ -6,5 +6,5 @@ My personal blog.
 
 - [Next.js](https://nextjs.org)
 - [Tailwind CSS](https://tailwindcss.com)
-- [Notion API](https://developers.notion.com)
+- [Ghost Content API](https://ghost.org)
 - [Vercel](https://vercel.com)

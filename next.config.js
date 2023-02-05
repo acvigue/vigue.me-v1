@@ -16,10 +16,6 @@ module.exports = {
   async rewrites() {
     return [
       {
-        source: "/feed/:format*",
-        destination: "/api/feed?f=:format*",
-      },
-      {
         source: "/sitemap.xml",
         destination: "/sitemap",
       },
@@ -37,9 +33,14 @@ module.exports = {
         permanent: true,
       },
       {
-        source: "/socials-ring",
+        source: "/socials",
         destination: "https://links.vigue.me",
-        permanent: false,
+        permanent: true,
+      },
+      {
+        source: "/resume",
+        destination: "https://blogcdn.vigue.me/Resume.pdf",
+        permanent: true,
       },
       {
         source: "/sponsor",

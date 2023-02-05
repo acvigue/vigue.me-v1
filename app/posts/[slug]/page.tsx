@@ -22,12 +22,7 @@ async function getData(slug: string) {
   let prevPost = (prevSlug && (await getPost(undefined, prevSlug))) || null
   let nextPost = (nextSlug && (await getPost(undefined, nextSlug))) || null
 
-  const pagination = {
-    prevPost,
-    nextPost
-  }
-
-  return { post, pagination };
+  return { post, pagination: { prevPost, nextPost } };
 }
 
 export default async function Page({ params: { slug } }) {

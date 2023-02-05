@@ -17,7 +17,7 @@ const DefaultSEO = {
     description,
     images: [
       {
-        url: config.baseUrl + "/og.png",
+        url: config.baseUrl + "/og.jpg",
         alt: title,
         width: 1280,
         height: 720,

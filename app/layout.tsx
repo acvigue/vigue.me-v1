@@ -14,8 +14,6 @@ import Footer from "@/components/Footer";
 import Analytics from "@/components/Analytics";
 import ThemeContext from "@/components/ThemeContext";
 import config from "@/site.config";
-import DefaultSEO from "@/next-seo.config";
-import { NextSeo } from "next-seo";
 
 export const revalidate = 3600;
 

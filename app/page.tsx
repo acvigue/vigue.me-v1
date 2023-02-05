@@ -1,7 +1,5 @@
 import { getPage, getPosts } from "@/lib/ghost";
 import { notFound } from "next/navigation";
-import RoleScramble from "@/components/RoleScramble";
-import { GhostContent } from "@/lib/render";
 import PostsList from "@/components/PostsList";
 import config from "site.config";
 import Link from "next/link";
@@ -26,7 +24,7 @@ export default async function Page() {
   return (
     <>
       <main className="mx-auto mb-16 flex w-full flex-col items-center justify-center">
-        <div className="mt-8 md:mt-32 md:mb-16 flex flex-col gap-4 max-w-6xl w-full">
+        <div className="mt-32 md:mb-16 flex flex-col gap-4 max-w-6xl w-full">
           <div className="inline-flex flex-wrap items-end gap-4 md:gap-8">
             <h4 className="inline text-lg md:text-2xl font-bold uppercase leading-none text-pink-600">Hello, my name is {config.shortName}</h4>
           </div>

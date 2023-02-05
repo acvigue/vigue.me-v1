@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from "react";
 import { useTheme } from "next-themes";
-import { nameToEmoji } from "gemoji";
 
 import Icon from "@/components/FeatherIcons";
 

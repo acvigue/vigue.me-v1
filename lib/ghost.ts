@@ -45,7 +45,7 @@ async function _getPage(page_id?: string, page_slug?: string) {
 export const getPost = cache(_getPost);
 async function _getPost(post_id?: string, post_slug?: string) {
   try {
-    return (await api.posts.read({id: post_id, slug: post_slug})) as PostOrPage;
+    return (await api.posts.read({id: post_id, slug: post_slug}, { include: ['authors', 'tags'] })) as PostOrPage;
   } catch(e) {
     console.error(`[ghost] getPost error: ${e}`);
     return {} as PostOrPage;
