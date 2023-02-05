@@ -21,7 +21,9 @@ export default async function Page({ params: { slug } }) {
     return (
       <>
         <main className="mx-auto mb-16 flex w-full max-w-4xl flex-col items-start justify-center">
-          <h1 className="mb-4 text-3xl font-bold tracking-tight text-pink-600 md:text-5xl">{page.title}</h1>
+          {(page.title.indexOf("[NO_TITLE]") == -1) && (
+            <h1 className="mb-4 text-3xl font-bold tracking-tight text-pink-600 md:text-5xl">{page.title.replace("[NO_INDEX]","")}</h1>
+          )}
           <div className="w-full antialiased">
             <GhostContent html={page.html ?? ""}/>
           </div>

@@ -324,7 +324,7 @@ is the very first element in the post content */
     top: 0;
     bottom: 0;
     width: 0.18rem;
-    background: var(--ghost-accent-color);
+    background: rgb(219 39 119);
 }
 
 .gh-content :not(pre) > code {

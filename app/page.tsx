@@ -5,6 +5,7 @@ import { GhostContent } from "@/lib/render";
 import PostsList from "@/components/PostsList";
 import config from "site.config";
 import Link from "next/link";
+import { FiMail } from "react-icons/fi";
 
 export const revalidate = 3600;
 
@@ -40,16 +41,24 @@ export default async function Page() {
             */}
           </div>
           <div className="text-lg mt-2 dark:text-gray-400 text-gray-700 md:text-xl font-medium leading-none antialiased" dangerouslySetInnerHTML={{__html: data.page.html}}/>
+          <div className="flex flex-start flex-shrink">
+            <div className="text-white drop-shadow-2xl relative transform-gpu transform-gpu duration-300 group">
+              <div className="absolute w-full h-full transform-gpu dark:mix-blend-overlay bg-gray-600 opacity-20 dark:opacity-25 -rotate-6 rounded-lg -z-10 transform-gpu duration-300 group-hover:rotate-0 group-hover:scale-90"></div>
+              <a href={`mailto:${config.email}`} className="text-sm font-bold uppercase flex flex-row items-center p-3 bg-pink-600 rounded-lg transform-gpu duration-300 group-hover:scale-90">
+                Get in touch <FiMail className="ml-2"></FiMail>
+              </a>
+            </div>
+          </div>
         </div>
         <div className="prose max-w-6xl w-full dark:prose-dark mt-6">
           <div className="text-sm font-bold uppercase text-pink-600">
-            Featured Posts
+            Featured Content
           </div>
           <PostsList posts={data.posts} search={false}/>
           <div className="w-full flex justify-end mt-4">
             <Link href={`/posts`}>
               <div className="text-sm font-bold uppercase text-pink-600 hover:text-pink-400 transform duration-200">
-                View More
+                View All
               </div>
             </Link>
           </div>

@@ -36,7 +36,7 @@ export default async function Page({ params: { slug } }) {
   if (not_found) notFound();
 
   return (
-    <main className=" mb-16 flex w-full flex-col items-center justify-center pt-4">
+    <main className="mb-16 flex w-full flex-col items-center justify-center pt-4">
       <div className="container relative mx-auto lg:max-w-6xl mb-8 md:mb-16">
         <div className="flex flex-col items-center text-white">
           <h1 className="w-3/4 text-4xl font-extrabold text-center md:mb-4 lg:text-5xl md:w-2/3 lg:w-full text-pink-600">{post.title}</h1>
@@ -59,11 +59,11 @@ export default async function Page({ params: { slug } }) {
         </div>
       </div>
       
-      <div className="w-full max-w-6xl antialiased mb-8">
+      <div className="w-full max-w-4xl antialiased mb-8 px-4 md:px-0">
         <GhostContent html={post.html ?? ""}/>
       </div>
 
-      <div className="w-full max-w-6xl flex justify-between flex-col md:flex-row">
+      <div className="w-full max-w-6xl flex justify-center items-center flex-col md:flex-row md:justify-between">
         {(pagination.prevPost != null) && (
           <Link href={`/posts/${pagination.prevPost.slug}`}>
             <span className="text-lg font-semibold text-pink-600 hover:text-pink-400 transform duration-300 flex items-center">

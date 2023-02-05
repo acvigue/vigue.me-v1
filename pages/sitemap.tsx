@@ -2,34 +2,34 @@ import { getServerSideSitemap, ISitemapField } from "next-sitemap";
 import { GetServerSideProps } from "next";
 
 import config from "@/config";
-import { getSiteMap } from "@/lib/notion";
+import { getPosts, getPages } from "@/lib/ghost";
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
-  const {
-    posts: { children: posts },
-    pages: { children: pages },
-  } = await getSiteMap();
+  const posts = await getPosts({});
+  const pages = await getPages({});
 
   const x_pages = pages
-    .filter(({ published }) => {
-      return published || false;
+    .filter(({published_at, title}) => {
+      return (published_at != undefined && title.indexOf("[NO_INDEX]") == -1) || false;
     })
-    .map(({ slug, last_edited_time }) => {
+    .map(({ slug, updated_at }) => {
       return {
         loc: config.baseUrl + "/" + slug,
-        lastmod: new Date(last_edited_time).toISOString(),
+        lastmod: new Date(updated_at).toISOString(),
         priority: 0.7,
       };
     });
 
+  
+
   const x_posts = posts
-    .filter(({ published }) => {
-      return published || false;
+    .filter(({ published_at, title }) => {
+      return (published_at != undefined && title.indexOf("[NO_INDEX]") == -1) || false;
     })
-    .map(({ slug, last_edited_time }) => {
+    .map(({ slug, updated_at }) => {
       return {
         loc: config.baseUrl + "/posts/" + slug,
-        lastmod: new Date(last_edited_time).toISOString(),
+        lastmod: new Date(updated_at).toISOString(),
         priority: 0.7,
       };
     });

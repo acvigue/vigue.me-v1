@@ -3,7 +3,7 @@ User-agent: *
 Allow: /
 
 # Host
-Host: https://maximousblk.me
+Host: https://vigue.me
 
 # Sitemaps
-Sitemap: https://maximousblk.me/sitemap.xml
+Sitemap: https://vigue.me/sitemap.xml

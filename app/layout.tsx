@@ -43,7 +43,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <meta name="theme-color" content="#111827" />
 
         {/* misc */}
-        <meta content="M4wcsX_DZ9CkpAzZ5rNmUbk1JWl3aLqgxIfB4YG-ozI" name="google-site-verification" />
         <meta content="IE=edge" httpEquiv="X-UA-Compatible" />
       </head>
       <body className="bg-white text-black dark:bg-gray-900 dark:text-white">
