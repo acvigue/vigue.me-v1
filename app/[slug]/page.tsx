@@ -1,13 +1,18 @@
-import { getPages, getPage } from "@/lib/ghost";
+import { getPages, getPage, getPost } from "@/lib/ghost";
 import { GhostContent } from "@/lib/render";
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 
 export const revalidate = 3600;
 
 async function getData(slug: string) {
   const page = await getPage(undefined, slug);
 
-  if (!page.id) return { not_found: true };
+  //Page not found, try to load post and redirect if possible
+  if (!page.id) {
+    const post = await getPost(undefined, slug);
+    if (!post.id) return { not_found: true };
+    redirect(`/posts/${post.slug}`);
+  }
 
   return { page };
 }

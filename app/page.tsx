@@ -40,8 +40,8 @@ export default async function Page() {
           </div>
           <div className="text-lg mt-2 dark:text-gray-400 text-gray-700 md:text-xl font-medium leading-none antialiased" dangerouslySetInnerHTML={{__html: data.page.html}}/>
           <div className="flex flex-start flex-shrink">
-            <div className="text-white drop-shadow-2xl relative transform-gpu transform-gpu duration-300 group">
-              <div className="absolute w-full h-full transform-gpu dark:mix-blend-overlay bg-gray-600 opacity-20 dark:opacity-25 -rotate-6 rounded-lg -z-10 transform-gpu duration-300 group-hover:rotate-0 group-hover:scale-90"></div>
+            <div className="text-white drop-shadow-2xl relative transform-gpu duration-300 group">
+              <div className="absolute w-full h-full transform-gpu dark:mix-blend-overlay bg-gray-600 opacity-20 dark:opacity-25 -rotate-6 rounded-lg -z-10 duration-300 group-hover:rotate-0 group-hover:scale-90"></div>
               <a href={`mailto:${config.email}`} className="text-sm font-bold uppercase flex flex-row items-center p-3 bg-pink-600 rounded-lg transform-gpu duration-300 group-hover:scale-90">
                 Get in touch <FiMail className="ml-2"></FiMail>
               </a>
