@@ -29,6 +29,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <link href="/favicons/apple-touch-icon.png" rel="apple-touch-icon" sizes="180x180" />
         <link href="/favicons/favicon-32x32.png" rel="icon" sizes="32x32" type="image/png" />
         <link href="/favicons/favicon-16x16.png" rel="icon" sizes="16x16" type="image/png" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.28.0/themes/prism-tomorrow.min.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.19.0/plugins/line-numbers/prism-line-numbers.min.css" />
         <link color="#111827" href="/favicons/safari-pinned-tab.svg" rel="mask-icon" />
 
         {/* manifest */}
