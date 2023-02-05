@@ -22,47 +22,37 @@ export default async function Page() {
   if (!data) notFound();
 
   return (
-    <>
-      <main className="mx-auto mb-16 flex w-full flex-col items-center justify-center">
-        <div className="mt-32 md:mb-16 flex flex-col gap-4 max-w-6xl w-full">
-          <div className="inline-flex flex-wrap items-end gap-4 md:gap-8">
-            <h4 className="inline text-lg md:text-2xl font-bold uppercase leading-none text-pink-600">Hello, my name is {config.shortName}</h4>
-          </div>
-          <div className="text-7xl font-serif text-gray-700 dark:text-white">
-            <div>
-              I make things.
-            </div>
-            {/*
-            <div className="md:block hidden">
-              <RoleScramble roles={config.roles}/>
-            </div>
-            */}
-          </div>
-          <div className="text-lg mt-2 dark:text-gray-400 text-gray-700 md:text-xl font-medium leading-none antialiased" dangerouslySetInnerHTML={{__html: data.page.html}}/>
-          <div className="flex flex-start flex-shrink">
-            <div className="text-white drop-shadow-2xl relative transform-gpu duration-300 group">
-              <div className="absolute w-full h-full transform-gpu dark:mix-blend-overlay bg-gray-600 opacity-20 dark:opacity-25 -rotate-6 rounded-lg -z-10 duration-300 group-hover:rotate-0 group-hover:scale-90"></div>
-              <a href={`mailto:${config.email}`} className="text-sm font-bold uppercase flex flex-row items-center p-3 bg-pink-600 rounded-lg transform-gpu duration-300 group-hover:scale-90">
-                Get in touch <FiMail className="ml-2"></FiMail>
-              </a>
-            </div>
-          </div>
+    <main className="mx-auto mb-16 flex w-full flex-col items-center justify-center">
+      <div className="mt-32 md:mb-16 flex flex-col gap-4 max-w-6xl w-full">
+        <div className="inline-flex flex-wrap items-end gap-4 md:gap-8">
+          <h4 className="inline text-lg md:text-2xl font-bold uppercase leading-none text-pink-600">Hello, my name is {config.shortName}</h4>
         </div>
-        <div className="prose max-w-6xl w-full dark:prose-dark mt-6">
-          <div className="text-sm font-bold uppercase text-pink-600">
-            Featured Content
-          </div>
-          <PostsList posts={data.posts} search={false}/>
-          <div className="w-full flex justify-end mt-4">
-            <Link href={`/posts`}>
-              <div className="text-sm font-bold uppercase text-pink-600 hover:text-pink-400 transform duration-200">
-                View All
-              </div>
+        <p className="text-7xl font-serif text-gray-700 dark:text-white">
+        I make things.
+        </p>
+        <div className="text-lg mt-2 dark:text-gray-400 text-gray-700 md:text-xl font-medium leading-none antialiased" dangerouslySetInnerHTML={{__html: data.page.html}}/>
+        <div className="flex flex-start flex-shrink">
+          <div className="text-white drop-shadow-2xl relative transform-gpu duration-300 group">
+            <div className="absolute w-full h-full transform-gpu dark:mix-blend-overlay bg-gray-600 opacity-20 dark:opacity-25 -rotate-6 rounded-lg -z-10 duration-300 group-hover:rotate-0 group-hover:scale-90"></div>
+            <Link href={`mailto:${config.email}`} className="text-sm font-bold uppercase flex flex-row items-center p-3 bg-pink-600 rounded-lg transform-gpu duration-300 group-hover:scale-90">
+              Get in touch <FiMail className="ml-2"></FiMail>
             </Link>
           </div>
         </div>
-      </main>
-    </>
-
+      </div>
+      <div className="prose max-w-6xl w-full dark:prose-dark mt-6">
+        <p className="text-sm font-bold uppercase text-pink-600">
+          Featured Content
+        </p>
+        {/*<PostsList posts={data.posts} search={false}/>*/}
+        <div className="w-full flex justify-end mt-4">
+          <Link href={`/posts`}>
+            <p className="text-sm font-bold uppercase text-pink-600 hover:text-pink-400 transform duration-200">
+              View All
+            </p>
+          </Link>
+        </div>
+      </div>
+    </main>
   );
 }
