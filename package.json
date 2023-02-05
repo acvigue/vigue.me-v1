@@ -34,7 +34,7 @@
     "next-pwa": "^5.6.0",
     "next-seo": "^5.15.0",
     "next-sitemap": "^3.1.48",
-    "next-themes": "^0.2.1",
+    "@wits/next-themes": "^0.2.14",
     "plaiceholder": "^2.5.0",
     "postcss": "^8.4.21",
     "react": "^18.2.0",

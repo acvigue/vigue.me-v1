@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { useTheme } from "next-themes";
+import { useTheme } from "@wits/next-themes";
 
 import Icon from "@/components/FeatherIcons";
 

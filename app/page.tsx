@@ -44,7 +44,7 @@ export default async function Page() {
         <p className="text-sm font-bold uppercase text-pink-600">
           Featured Content
         </p>
-        {/*<PostsList posts={data.posts} search={false}/>*/}
+        <PostsList posts={data.posts} search={false}/>
         <div className="w-full flex justify-end mt-4">
           <Link href={`/posts`}>
             <p className="text-sm font-bold uppercase text-pink-600 hover:text-pink-400 transform duration-200">
