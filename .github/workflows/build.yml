@@ -23,3 +23,7 @@ jobs:
         uses: borales/actions-yarn@v4
         with:
           cmd: build
+        env:
+          GHOST_URL: https://cms.vigue.me
+          GHOST_CONTENT_KEY: ${{ secrets.GHOST_CONTENT_KEY }}
+          GHOST_PATH: ghost
