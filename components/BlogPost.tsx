@@ -12,7 +12,7 @@ export default function BlogPost({ title, excerpt, slug, published_at, feature_i
             <div className="relative rounded w-full bg-cover bg-center" style={{
               backgroundImage: `url("${feature_image}")`
               }}>
-              <div className="pt-[50%]"></div>
+              <div className="pt-[56%]"></div>
             </div>
             <div className="rounded absolute top-0 left-0 w-full h-full group-hover:opacity-100 opacity-0 bg-gradient-to-t from-black to-transparent transition transform-gpu duration-300"/>
           </div>

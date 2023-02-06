@@ -47,7 +47,7 @@ export default async function Page({ params: { slug } }) {
           <div className="relative rounded w-full bg-cover bg-center" style={{
             backgroundImage: `url("${post.feature_image}")`
           }}>
-            <div className="pt-[50%]"></div>
+            <div className="pt-[56%]"></div>
           </div>
         </div>
       </div>
