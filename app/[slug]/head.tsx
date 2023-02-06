@@ -9,10 +9,12 @@ import Script from "next/script";
 async function getData(slug: string) {
   const page = await getPage(undefined, slug);
 
-  if (!page.id || page.title.indexOf("[NO_INDEX]") != -1) return { not_found: true };
+  if (!page.id) return { not_found: true };
+
+  const title = page.og_title ?? page.meta_title ?? page.title.replace("[NO_INDEX]", "").replace("[NO_TITLE]", "")
 
   const openGraph: OpenGraph = {
-    title: `${page.og_title ?? page.meta_title ?? page.title} - ${config.name}`,
+    title: `${title} - ${config.name}`,
     description: page.og_description ?? page.meta_description ?? page.excerpt,
     article: {
       publishedTime: page.published_at,
@@ -25,11 +27,11 @@ async function getData(slug: string) {
     }]
   }
 
-  return { page, openGraph };
+  return { page, title, openGraph };
 }
 
 export default async function Head({ params: { slug } }) {
-  const { page, openGraph } = await getData(slug);
+  const { page, title, openGraph } = await getData(slug);
 
   return (
     <>
@@ -38,7 +40,7 @@ export default async function Head({ params: { slug } }) {
       <Script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></Script>
       <Script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></Script>
       <NextSeo {...DefaultSEO} 
-        title={page?.meta_title ?? page?.title}
+        title={page?.meta_title ?? title}
         description={page?.meta_description ?? page?.excerpt} 
         canonical={openGraph?.url}
         openGraph={openGraph ?? {}}
