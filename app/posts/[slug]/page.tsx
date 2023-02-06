@@ -59,32 +59,31 @@ export default async function Page({ params: { slug } }) {
       <div className="w-full max-w-6xl flex justify-center items-center flex-col md:flex-row md:justify-between">
         {(pagination.prevPost != null) && (
           <Link href={`/posts/${pagination.prevPost.slug}`}>
-            <span className="text-lg font-semibold text-pink-600 hover:text-pink-400 transform duration-300 flex items-center">
+            <div className="text-lg font-semibold text-pink-600 hover:text-pink-400 transform duration-300 flex items-center">
               <FiArrowLeft className="inline"/>
               <span>{pagination.prevPost.title}</span>
-            </span>
+            </div>
           </Link>
         )}
         {(pagination.prevPost == null) && (
-          <span className="text-lg font-semibold text-gray-500">
+          <div className="text-lg font-semibold text-gray-500">
             <span>No newer posts</span>
-          </span>
+          </div>
         )}
 
         {(pagination.nextPost != null) && (
           <Link href={`/posts/${pagination.nextPost.slug}`}>
-            <span className="text-lg font-semibold text-pink-600 hover:text-pink-400 transform duration-300 flex items-center">
-              
+            <div className="text-lg font-semibold text-pink-600 hover:text-pink-400 transform duration-300 flex items-center">
               <span>{pagination.nextPost.title}</span>
               <FiArrowRight className="inline"/>
-            </span>
+            </div>
           </Link>
         )}
 
         {(pagination.nextPost == null) && (
-          <span className="text-lg font-semibold text-gray-500">
+          <div className="text-lg font-semibold text-gray-500">
             <span>No older posts!</span>
-          </span>
+          </div>
         )}
       </div>
     </main>
