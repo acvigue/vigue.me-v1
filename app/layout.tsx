@@ -1,6 +1,8 @@
 import "@/styles/global.scss";
 import "@/styles/casper.css";
 import "@/styles/cards.css";
+import "@/styles/prism-tomorrow.css";
+import "@/styles/prism-line-numbers.css";
 
 import "@fontsource/inter";
 import "@fontsource/lora";
@@ -15,6 +17,7 @@ import Analytics from "@/components/Analytics";
 import ThemeContext from "@/components/ThemeContext";
 import { ServerThemeProvider } from "@wits/next-themes";
 import config from "@/site.config";
+import Script from "next/script";
 
 export const revalidate = 3600;
 
@@ -31,8 +34,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <link href="/favicons/apple-touch-icon.png" rel="apple-touch-icon" sizes="180x180" />
           <link href="/favicons/favicon-32x32.png" rel="icon" sizes="32x32" type="image/png" />
           <link href="/favicons/favicon-16x16.png" rel="icon" sizes="16x16" type="image/png" />
-          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.28.0/themes/prism-tomorrow.min.css" />
-          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.19.0/plugins/line-numbers/prism-line-numbers.min.css" />
           <link color="#111827" href="/favicons/safari-pinned-tab.svg" rel="mask-icon" />
 
           {/* manifest */}
@@ -46,12 +47,15 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
           {/* misc */}
           <meta content="IE=edge" httpEquiv="X-UA-Compatible" />
+          <Script src="/scripts/cards.min.js"></Script>
+          <Script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.28.0/components/prism-core.min.js"></Script>
+          <Script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></Script>
         </head>
         <body className="bg-white text-black dark:bg-gray-900 dark:text-white">
           <ThemeContext>
             <div className="flex min-h-screen flex-col bg-white dark:bg-gray-900">
               <Navbar />
-              <div className="flex flex-1 flex-col justify-center bg-white px-4 dark:bg-gray-900 sm:px-8">{children}</div>
+                <div className="flex flex-1 flex-col justify-center bg-white px-4 dark:bg-gray-900 sm:px-8">{children}</div>
               <Footer />
             </div>
           </ThemeContext>

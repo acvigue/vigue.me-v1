@@ -23,7 +23,7 @@ export default async function Page() {
         </div>
       </div>
       <div className="prose max-w-6xl w-full dark:prose-dark mt-4">
-        <PostsList posts={data} search={true}/>
+        <PostsList posts={data}/>
       </div>
     </main>
   );
