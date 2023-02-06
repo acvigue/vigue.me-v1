@@ -20,7 +20,7 @@ export const config = {
   nav: [
     { name: "About", href: "/about" },
     { name: "Posts", href: "/posts" },
-    { name: "Resume", href: "/resume" }
+    { name: "Resume", href: "https://blogcdn.vigue.me/Resume.pdf" }
   ],
   footer: {
     links: [
