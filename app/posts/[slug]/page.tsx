@@ -66,7 +66,7 @@ export default async function Page({ params: { slug } }) {
           </Link>
         )}
         {(pagination.prevPost == null) && (
-          <div className="text-lg font-semibold text-gray-500">
+          <div className="text-lg font-semibold text-gray-500 hidden md:block">
             <span>No newer posts</span>
           </div>
         )}
@@ -81,8 +81,8 @@ export default async function Page({ params: { slug } }) {
         )}
 
         {(pagination.nextPost == null) && (
-          <div className="text-lg font-semibold text-gray-500">
-            <span>No older posts!</span>
+          <div className="text-lg font-semibold text-gray-500 hidden md:block">
+            <span>No older posts</span>
           </div>
         )}
       </div>
