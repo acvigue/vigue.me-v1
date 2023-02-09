@@ -1015,3 +1015,9 @@ the right place. Onward!
     font-weight: 600;
     color: rgb(219 39 119);
 }
+
+.gh-content h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: rgb(219 39 119);
+}
