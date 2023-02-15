@@ -2,11 +2,12 @@ import { getServerSideSitemap, ISitemapField } from "next-sitemap";
 import { GetServerSideProps } from "next";
 
 import config from "@/config";
-import { getPosts, getPages } from "@/lib/ghost";
+import { getPosts, getPages, getTags } from "@/lib/ghost";
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const posts = await getPosts({});
   const pages = await getPages({});
+  const tags = await getTags({});
 
   const x_pages = pages
     .filter(({published_at, title}) => {
@@ -20,7 +21,14 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
       };
     });
 
-  
+  const x_tags = tags
+    .map(({ slug }) => {
+      return {
+        loc: config.baseUrl + "/tags/" + slug,
+        lastmod: new Date(Date.now()).toISOString(),
+        priority: 0.7,
+      };
+    });
 
   const x_posts = posts
     .filter(({ published_at, title }) => {
@@ -47,6 +55,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
       priority: 0.7,
     },
     ...x_posts,
+    ...x_tags,
   ];
 
   ctx.res.setHeader("Cache-Control", "public, max-age=3600, s-maxage=3600, stale-while-revalidate=3600");

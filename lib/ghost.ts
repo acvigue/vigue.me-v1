@@ -1,6 +1,6 @@
 import { cache } from "react";
 
-import GhostContentAPI, { Params, PostOrPage, PostsOrPages } from "@tryghost/content-api";
+import GhostContentAPI, { Params, PostOrPage, PostsOrPages, Tag, Tags } from "@tryghost/content-api";
 
 // Create API instance with site credentials
 const api = new GhostContentAPI({
@@ -29,6 +29,27 @@ async function _getPosts(filters: Params) {
   } catch(e) {
     console.error(`[ghost] getPosts error: ${e}`);
     return [] as PostsOrPages;
+  }
+}
+
+export const getTags = cache(_getTags);
+async function _getTags(filters: Params) {
+  let x: Params = {...filters};
+  try {
+    return (await api.tags.browse(x)) as Tags;
+  } catch(e) {
+    console.error(`[ghost] getTags error: ${e}`);
+    return [] as Tags;
+  }
+}
+
+export const getTag = cache(_getTag);
+async function _getTag(tag_id?: string, tag_slug?: string) {
+  try {
+    return (await api.tags.read({id: tag_id, slug: tag_slug})) as Tag;
+  } catch(e) {
+    console.error(`[ghost] getTag error: ${e}`);
+    return [] as Tags;
   }
 }
 
