@@ -1,9 +1,34 @@
-import { getPosts, getTag, getTags } from "@/lib/ghost";
+import { getPost, getPosts, getTag, getTags } from "@/lib/ghost";
 import { notFound } from "next/navigation";
 import PostsList from "@/components/PostsList";
 import { Tag } from "@tryghost/content-api";
+import { ResolvingMetadata, Metadata } from "next";
+import config from "@/config";
 
 export const revalidate = 3600;
+
+export async function generateMetadata(
+  { params, _ },
+  parent?: ResolvingMetadata,
+): Promise<Metadata> {
+  // read route params
+  const slug = params.slug;
+  const tag = await getTag(undefined, slug) as Tag;
+
+  return {
+    title: tag.name,
+    description: tag.og_description ?? tag.meta_description ?? tag.description,
+    openGraph: {
+      title: `${tag.og_title ?? tag.meta_title ?? tag.name}`,
+      description: tag.og_description ?? tag.meta_description ?? tag.description,
+      url: `${config.baseUrl}/tags/${tag.slug}`,
+      images: [{
+        url: tag.og_image ?? tag.feature_image ?? config.defaultOGImage,
+        alt: tag.og_description ?? ""
+      }]
+    },
+  };
+}
 
 async function getData(slug: string) {
   const tag = await getTag(undefined, slug) as Tag;

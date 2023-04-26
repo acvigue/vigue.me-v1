@@ -13,6 +13,7 @@ export const config = {
   email: "aiden@vigue.me",
   username: "acvigue",
   baseUrl: "https://vigue.me",
+  defaultOGImage: "https://vigue.me/og.jpg",
   repo: {
     name: "acvigue/vigue.me",
     branch: "main",

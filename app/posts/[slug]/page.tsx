@@ -4,15 +4,44 @@ import { notFound } from "next/navigation";
 import { format } from "date-fns";
 import Link from "next/link";
 import { FiArrowLeft, FiArrowRight } from "react-icons/fi";
+import { Metadata, ResolvingMetadata } from "next";
+import { config } from "@/config";
+import Script from "next/script";
 
 export const revalidate = 3600;
+
+export async function generateMetadata(
+  { params, _ },
+  parent?: ResolvingMetadata,
+): Promise<Metadata> {
+  // read route params
+  const slug = params.slug;
+  const post = await getPost(undefined, slug);
+
+  return {
+    title: post.og_title ?? post.meta_title ?? post.title,
+    description: post.og_description ?? post.meta_description ?? post.excerpt,
+    openGraph: {
+      title: `${post.og_title ?? post.meta_title ?? post.title}`,
+      description: post.og_description ?? post.meta_description ?? post.excerpt,
+      type: 'article',
+      publishedTime: post.published_at,
+      modifiedTime: post.updated_at,
+      url: `${config.baseUrl}/posts/${post.slug}`,
+      images: [{
+        url: post.og_image ?? post.feature_image ?? config.defaultOGImage,
+        alt: post.og_description ?? post.feature_image_alt ?? ""
+      }]
+    },
+  };
+}
 
 async function getData(slug: string) {
   const post = await getPost(undefined, slug);
 
   if (!post.id) return { not_found: true };
 
-  const posts = await getPosts({include: []});
+  const posts = await getPosts({ include: [] });
   const slugs = posts.map((p) => p.slug);
 
   const index = slugs.indexOf(post?.slug)
@@ -51,16 +80,19 @@ export default async function Page({ params: { slug } }) {
           </div>
         </div>
       </div>
-      
+
       <div className="w-full max-w-4xl antialiased mb-8 px-4 md:px-0">
-        <GhostContent html={post.html ?? ""}/>
+        <Script src="/scripts/cards.min.js"></Script>
+        <Script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></Script>
+        <Script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></Script>
+        <GhostContent html={post.html ?? ""} />
       </div>
 
       <div className="w-full max-w-6xl flex justify-center items-center flex-col md:flex-row md:justify-between">
         {(pagination.prevPost != null) && (
           <Link href={`/posts/${pagination.prevPost.slug}`}>
             <div className="text-lg font-semibold text-pink-600 hover:text-pink-400 transform duration-300 flex items-center">
-              <FiArrowLeft className="inline"/>
+              <FiArrowLeft className="inline" />
               <span>{pagination.prevPost.title}</span>
             </div>
           </Link>
@@ -75,7 +107,7 @@ export default async function Page({ params: { slug } }) {
           <Link href={`/posts/${pagination.nextPost.slug}`}>
             <div className="text-lg font-semibold text-pink-600 hover:text-pink-400 transform duration-300 flex items-center">
               <span>{pagination.nextPost.title}</span>
-              <FiArrowRight className="inline"/>
+              <FiArrowRight className="inline" />
             </div>
           </Link>
         )}

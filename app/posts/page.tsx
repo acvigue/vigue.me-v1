@@ -2,8 +2,13 @@ import { getPosts } from "@/lib/ghost";
 import { notFound } from "next/navigation";
 import PostsList from "@/components/PostsList";
 import Link from "next/link";
+import { Metadata } from "next";
 
 export const revalidate = 3600;
+
+export const metadata: Metadata = {
+  title: "All Posts"
+}
 
 async function getData() {
   const posts = await getPosts({ fields: ['feature_image', 'published_at', 'excerpt', 'slug', 'title', 'id', 'featured']});
