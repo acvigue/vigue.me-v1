@@ -7,10 +7,7 @@ import config from "@/config";
 
 export const revalidate = 3600;
 
-export async function generateMetadata(
-  { params, _ },
-  parent?: ResolvingMetadata,
-): Promise<Metadata> {
+export async function generateMetadata({ params }): Promise<Metadata> {
   // read route params
   const slug = params.slug;
   const tag = await getTag(undefined, slug) as Tag;
