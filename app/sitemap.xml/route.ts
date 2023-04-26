@@ -1,16 +1,15 @@
 import { getServerSideSitemap, ISitemapField } from "next-sitemap";
-import { GetServerSideProps } from "next";
-
 import config from "@/config";
 import { getPosts, getPages, getTags } from "@/lib/ghost";
 
-export const getServerSideProps: GetServerSideProps = async (ctx) => {
+export async function GET(request: Request) {
+  // Fetch data from external API
   const posts = await getPosts({});
   const pages = await getPages({});
   const tags = await getTags({});
 
   const x_pages = pages
-    .filter(({published_at, title}) => {
+    .filter(({ published_at, title }) => {
       return (published_at != undefined && title.indexOf("[NO_INDEX]") == -1) || false;
     })
     .map(({ slug, updated_at }) => {
@@ -21,14 +20,13 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
       };
     });
 
-  const x_tags = tags
-    .map(({ slug }) => {
-      return {
-        loc: config.baseUrl + "/tags/" + slug,
-        lastmod: new Date(Date.now()).toISOString(),
-        priority: 0.7,
-      };
-    });
+  const x_tags = tags.map(({ slug }) => {
+    return {
+      loc: config.baseUrl + "/tags/" + slug,
+      lastmod: new Date(Date.now()).toISOString(),
+      priority: 0.7,
+    };
+  });
 
   const x_posts = posts
     .filter(({ published_at, title }) => {
@@ -58,9 +56,9 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
     ...x_tags,
   ];
 
-  ctx.res.setHeader("Cache-Control", "public, max-age=3600, s-maxage=3600, stale-while-revalidate=3600");
+  const responseHeaders = {
+    "Cache-Control": "public, max-age=3600, s-maxage=3600, stale-while-revalidate=3600",
+  };
 
-  return getServerSideSitemap(ctx, entries);
-};
-
-export default function SiteMap() {}
+  return getServerSideSitemap(entries, responseHeaders);
+}

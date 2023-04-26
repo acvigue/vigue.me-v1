@@ -13,18 +13,6 @@ module.exports = {
     }
     return config;
   },
-  async rewrites() {
-    return [
-      {
-        source: "/sitemap.xml",
-        destination: "/sitemap",
-      },
-      {
-        source: "/robots.txt",
-        destination: "/.well-known/robots.txt",
-      },
-    ];
-  },
   async redirects() {
     return [
       {
