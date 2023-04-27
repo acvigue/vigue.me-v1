@@ -8,6 +8,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   }
 
   const body = req.body;
+  res.send(body);
+  console.log(body);
+  return;
 
   if (body.page) {
     const page = body.page;
