@@ -12,6 +12,10 @@ export async function generateMetadata({ params }): Promise<Metadata> {
   const slug = params.slug;
   const page = await getPage(undefined, slug);
 
+  if(!page.id) {
+    return {};
+  }
+
   const title = page.og_title ?? page.meta_title ?? page.title.replace("[NO_INDEX]", "").replace("[NO_TITLE]", "")
 
   return {
