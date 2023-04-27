@@ -7,11 +7,11 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     return;
   }
 
-  const body = JSON.parse(req.body);
+  const body = req.body;
 
   if (body.page) {
     const page = body.page;
-    if (JSON.stringify(page.current) === "{}") {
+    if (Object.keys(page.current).length === 0) {
       //page was deleted
       await res.revalidate(`/${page.previous.slug}`);
     } else {
@@ -21,36 +21,36 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         await res.revalidate(`/${page.previous.slug}`);
       }
     }
-  } else if (body.page) {
-    const page = body.page;
-    if (JSON.stringify(page.current) === "{}") {
-      //page was deleted
-      await res.revalidate(`/pages/${page.previous.slug}`);
-      await res.revalidate(`/pages`);
-
-      if (page.previous.tags) {
-        page.previous.tags.forEach(async (tag) => {
+  } else if (body.post) {
+    const post = body.post;
+    if (Object.keys(post.current).length === 0) {
+      //post was deleted
+      if (post.previous.tags) {
+        post.previous.tags.forEach(async (tag) => {
           await res.revalidate(`/tags/${tag.slug}`);
         });
       }
+      await res.revalidate(`/posts`);
+
+      await res.revalidate(`/posts/${post.previous.slug}`);
     } else {
-      await res.revalidate(`/pages/${page.current.slug}`);
-      await res.revalidate(`/pages`);
+      await res.revalidate(`/posts/${post.current.slug}`);
+      await res.revalidate(`/posts`);
 
-      if (page.current.tags) {
-        page.current.tags.forEach(async (tag) => {
+      if (post.current.tags) {
+        post.current.tags.forEach(async (tag) => {
           await res.revalidate(`/tags/${tag.slug}`);
         });
       }
 
-      if (page.previous.tags) {
-        page.previous.tags.forEach(async (tag) => {
+      if (post.previous.tags) {
+        post.previous.tags.forEach(async (tag) => {
           await res.revalidate(`/tags/${tag.slug}`);
         });
       }
 
-      if (page.previous.slug) {
-        await res.revalidate(`/pages/${page.previous.slug}`);
+      if (post.previous.slug) {
+        await res.revalidate(`/posts/${post.previous.slug}`);
       }
     }
   } else {
