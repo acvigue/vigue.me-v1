@@ -15,6 +15,10 @@ export async function generateMetadata({ params }): Promise<Metadata> {
   const slug = params.slug;
   const post = await getPost(undefined, slug);
 
+  if(!post.id) {
+    return {}
+  }
+
   return {
     title: post.og_title ?? post.meta_title ?? post.title,
     description: post.og_description ?? post.meta_description ?? post.excerpt,

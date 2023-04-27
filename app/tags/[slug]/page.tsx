@@ -12,6 +12,10 @@ export async function generateMetadata({ params }): Promise<Metadata> {
   const slug = params.slug;
   const tag = await getTag(undefined, slug) as Tag;
 
+  if(!tag.id) {
+    return {}
+  }
+
   return {
     title: tag.name,
     description: tag.og_description ?? tag.meta_description ?? tag.description,
