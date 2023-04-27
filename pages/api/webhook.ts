@@ -29,20 +29,19 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       //page was deleted
       paths.push(`/${page.previous.slug}`);
 
-      if (page.previous.tags !== undefined) {
-        for (const tag of page.previous.tags) {
-          paths.push(`/tags/${tag.slug}`);
-        }
+      for (const tag of page.previous.tags ?? []) {
+        paths.push(`/tags/${tag.slug}`);
       }
     } else {
       paths.push(`/${page.current.slug}`);
 
-      if (page.previous.slug != page.current.slug) {
+      if (page.previous.slug ?? page.current.slug !== page.current.slug) {
         paths.push(`/${page.previous.slug}`);
       }
 
       let tag_slugs: [String?] = [];
-      for (const tag of [...page.previous.tags, ...page.current.tags]) {
+      
+      for (const tag of [...page.previous.tags ?? [], ...page.current.tags?? []]) {
         tag_slugs.push(tag.slug);
       }
 
@@ -56,10 +55,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     const post = body.post;
     if (Object.keys(post.current).length === 0) {
       //post was deleted
-      if (post.previous.tags !== undefined) {
-        for (const tag of post.previous.tags) {
-          paths.push(`/tags/${tag.slug}`);
-        }
+      for (const tag of post.previous.tags ?? []) {
+        paths.push(`/tags/${tag.slug}`);
       }
       paths.push(`/posts`);
 
@@ -68,7 +65,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       paths.push(`/posts/${post.current.slug}`);
 
       let tag_slugs: [String?] = [];
-      for (const tag of [...post.previous.tags, ...post.current.tags]) {
+      for (const tag of [...post.previous.tags ?? [], ...post.current.tags ?? []]) {
         tag_slugs.push(tag.slug);
       }
 
@@ -78,7 +75,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         paths.push(`/tags/${tag}`);
       }
 
-      if (post.previous.slug !== post.current.slug) {
+      if (post.previous.slug ?? post.current.slug !== post.current.slug) {
         paths.push(`/posts/${post.previous.slug}`);
       }
 
@@ -90,9 +87,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   }
 
   if(paths.length > 0) {
-    console.log(paths);
+    await Promise.all(paths.map(path => res.revalidate(path)));
     res.status(200).send({ revalidated: paths });
-    //await Promise.all(paths.map(path => res.revalidate(path)));
   }
 }
 
