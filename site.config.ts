@@ -21,7 +21,7 @@ export const config = {
   nav: [
     { name: "About", href: "/about" },
     { name: "Posts", href: "/posts" },
-    { name: "Resume", href: "https://blogcdn.vigue.me/Resume.pdf" }
+    { name: "Resume", href: "https://dnzye6trx9wog.cloudfront.net/Resume.pdf" }
   ],
   footer: {
     links: [
@@ -31,6 +31,11 @@ export const config = {
         name: "Source Code",
         icon: "FiGithub",
         href: "https://github.com/acvigue/vigue.me",
+      },
+      {
+        name: "RSS Feed",
+        icon: "FiRss",
+        href: "https://vigue.me/feed.xml",
       },
     ],
   },
