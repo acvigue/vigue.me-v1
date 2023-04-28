@@ -3,7 +3,7 @@ module.exports = {
   reactStrictMode: true,
   experimental: { appDir: true },
   images: {
-    domains: ["vigue.me", "blogcdn.vigue.me"],
+    domains: ["vigue.me", "dnzye6trx9wog.cloudfront.net"],
   },
   webpack: (config, { dev, isServer }) => {
     if (!dev && !isServer) {
@@ -27,7 +27,7 @@ module.exports = {
       },
       {
         source: "/resume",
-        destination: "https://blogcdn.vigue.me/Resume.pdf",
+        destination: "https://dnzye6trx9wog.cloudfront.net/Resume.pdf",
         permanent: true,
       },
       {
