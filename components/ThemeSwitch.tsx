@@ -14,7 +14,7 @@ export default function ThemeSwitch() {
 
   return (
     mounted && (
-      <div className="flex flex-shrink-0 space-x-2 hidden md:block">
+      <div className="flex flex-shrink-0 space-x-2 md:block">
         <button
           aria-label="Toggle Dark Mode"
           type="button"

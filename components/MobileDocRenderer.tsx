@@ -16,8 +16,6 @@ export default async function MobileDocRenderer(props: Props) {
         markups: []
     };
 
-    console.log(props.mobiledoc);
-
     const renderer = new MobiledocReactRenderer(options);
 
     const comp = await renderer.render(props.mobiledoc);
