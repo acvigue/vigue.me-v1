@@ -1,5 +1,6 @@
 import { getPosts, getPost } from "@/lib/ghost";
 import { GhostContent } from "@/lib/render";
+import MobileDocRenderer from "components/MobileDocRenderer";
 import { notFound } from "next/navigation";
 import { format } from "date-fns";
 import Link from "next/link";
@@ -15,7 +16,7 @@ export async function generateMetadata({ params }): Promise<Metadata> {
   const slug = params.slug;
   const post = await getPost(undefined, slug);
 
-  if(!post.id) {
+  if (!post.id) {
     return {}
   }
 
@@ -60,11 +61,14 @@ export default async function Page({ params: { slug } }) {
 
   if (not_found) notFound();
 
+  console.log(post.mobiledoc);
+
   return (
     <main className="mb-16 flex w-full flex-col items-center justify-center pt-4">
       <div className="container relative mx-auto lg:max-w-6xl mb-8 md:mb-16">
         <div className="flex flex-col items-center text-white">
           <h1 className="w-3/4 text-4xl font-extrabold text-center md:mb-4 lg:text-5xl md:w-2/3 lg:w-full text-pink-600">{post.title}</h1>
+          <h4 className="inline text-md font-semibold leading-none text-pink-600"><i>{post.excerpt}</i></h4>
           <div className="flex items-center -ml-px text-xs tracking-wide uppercase my-4 dark:text-purple-200 text-purple-800">
             <svg width="24" height="24" fill="none" viewBox="0 0 24 24" className="h-4 -ml-1 transform -translate-y-px opacity-75"><path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M4.75 8.75C4.75 7.64543 5.64543 6.75 6.75 6.75H17.25C18.3546 6.75 19.25 7.64543 19.25 8.75V17.25C19.25 18.3546 18.3546 19.25 17.25 19.25H6.75C5.64543 19.25 4.75 18.3546 4.75 17.25V8.75Z"></path> <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M8 4.75V8.25"></path> <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M16 4.75V8.25"></path> <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M7.75 10.75H16.25"></path></svg>
             <span>{format(Date.parse(post.published_at), "MMMM d, yyyy")}</span>
@@ -86,7 +90,9 @@ export default async function Page({ params: { slug } }) {
         <Script src="/scripts/cards.min.js"></Script>
         <Script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></Script>
         <Script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></Script>
-        <GhostContent html={post.html ?? ""} />
+
+        {/* @ts-expect-error Server Component */}
+        <MobileDocRenderer mobiledoc={post.mobiledoc} />
       </div>
 
       <div className="w-full max-w-6xl flex justify-center items-center flex-col md:flex-row md:justify-between">
@@ -122,6 +128,8 @@ export default async function Page({ params: { slug } }) {
     </main>
   );
 }
+
+/*
 export async function generateStaticParams() {
   const posts = await getPosts({});
 
@@ -130,3 +138,4 @@ export async function generateStaticParams() {
       return { slug };
     });
 }
+*/

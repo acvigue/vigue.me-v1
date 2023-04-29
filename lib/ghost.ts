@@ -70,7 +70,7 @@ async function _getPage(page_id?: string, page_slug?: string) {
   try {
     let main = await contentAPI.pages.read({id: page_id, slug: page_slug}) as PostOrPageWithMobiledoc
     const adminPage = await adminAPI.pages.read({id: page_id, slug: page_slug});
-    main.mobiledoc = adminPage.mobiledoc;
+    main.mobiledoc = JSON.parse(adminPage.mobiledoc);
     return main;
   } catch(e) {
     console.error(`[ghost] getPage error: ${e}`);
@@ -83,7 +83,7 @@ async function _getPost(post_id?: string, post_slug?: string) {
   try {
     let main = await contentAPI.posts.read({id: post_id, slug: post_slug}, { include: ['authors', 'tags'] }) as PostOrPageWithMobiledoc
     const adminPost = await adminAPI.posts.read({id: post_id, slug: post_slug});
-    main.mobiledoc = adminPost.mobiledoc;
+    main.mobiledoc = JSON.parse(adminPost.mobiledoc);
     return main;
   } catch(e) {
     console.error(`[ghost] getPost error: ${e}`);
