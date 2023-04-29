@@ -1,3 +1,4 @@
+"use client";
 import MobiledocReactRenderer from '@dailybeast/mobiledoc-react-renderer';
 import "styles/mobiledoc.scss";
 
