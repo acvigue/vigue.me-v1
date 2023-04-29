@@ -20,8 +20,8 @@ export default function ImageCard(props: Props) {
   const payload = props.payload;
 
   return (
-    <SlideshowLightbox>
-      <img src={payload.src} alt={payload.alt} className='rounded-md' />
+    <SlideshowLightbox className="flex row justify-center">
+      <img src={payload.src} alt={payload.alt} className='rounded-md w-max' />
     </SlideshowLightbox>
   );
 }

@@ -1,5 +1,6 @@
-"use server"
 import MobiledocReactRenderer from '@dailybeast/mobiledoc-react-renderer';
+import "styles/mobiledoc.scss";
+
 import cards from './mobiledoc/cards';
 //import atoms from './mobiledoc/atoms';
 //import markups from './mobiledoc/markups';
@@ -14,6 +15,8 @@ export default async function MobileDocRenderer(props: Props) {
         atoms: [],
         markups: []
     };
+
+    console.log(props.mobiledoc);
 
     const renderer = new MobiledocReactRenderer(options);
 

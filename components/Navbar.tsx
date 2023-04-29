@@ -14,6 +14,7 @@ export default function Navbar() {
               className="flex items-center justify-between rounded px-2.5 py-1.5 text-gray-900 dark:text-gray-100 "
             >
               <span className="flex select-none items-center justify-between pr-2 text-sm" aria-hidden="true">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img src={config.headshot} className="w-10" alt="headshot image"/>
               </span>
               <span className="font-bold">{config.name}</span>
