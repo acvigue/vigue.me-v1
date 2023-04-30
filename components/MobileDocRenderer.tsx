@@ -1,8 +1,10 @@
-"use client";
+"use server";
+
 import MobiledocReactRenderer from '@dailybeast/mobiledoc-react-renderer';
 import "styles/mobiledoc.scss";
 
 import cards from './mobiledoc/cards';
+import { getResizedImageURLS } from '@/lib/imgproxy';
 //import atoms from './mobiledoc/atoms';
 //import markups from './mobiledoc/markups';
 
@@ -17,12 +19,9 @@ export default async function MobileDocRenderer(props: Props) {
         markups: []
     };
 
-    const renderer = new MobiledocReactRenderer(options);
+    let mobiledoc = props.mobiledoc;
 
-    const comp = await renderer.render(props.mobiledoc);
-    return (
-        <div>
-            {comp}
-        </div>
-    );
+    const renderer = new MobiledocReactRenderer(options);
+    
+    return renderer.render(mobiledoc);
 }

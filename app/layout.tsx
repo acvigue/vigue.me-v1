@@ -1,12 +1,9 @@
 import "@/styles/global.scss";
-import "@/styles/casper.css";
-import "@/styles/cards.css";
-import "@/styles/prism-tomorrow.css";
-import "@/styles/prism-line-numbers.css";
 import "katex/dist/katex.min.css";
 
 import "@fontsource/inter/800.css";
 import "@fontsource/inter/700.css";
+import "@fontsource/inter/600.css";
 import "@fontsource/inter/500.css";
 import "@fontsource/lora";
 import "@fontsource/jetbrains-mono";

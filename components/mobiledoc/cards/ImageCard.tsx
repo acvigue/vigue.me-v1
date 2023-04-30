@@ -1,8 +1,10 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
 
-import { SlideshowLightbox } from "lightbox.js-react";
-import 'lightbox.js-react/dist/index.css'
+import { useState } from "react";
+import Lightbox from "yet-another-react-lightbox";
+import "yet-another-react-lightbox/styles.css";
+import SmartImage from "@/components/SmartImage";
 
 export interface Props {
   payload: {
@@ -12,16 +14,46 @@ export interface Props {
     width: number;
     height: number;
     href?: string;
+    srcset: any;
     key: number;
   }
 }
 
-export default function ImageCard(props: Props) {
-  const payload = props.payload;
+const responsiveImage = function({ slide, rect }) {
+  const sources = slide;
+
+  if(sources == undefined) {
+      return (<div></div>);
+  }
 
   return (
-    <SlideshowLightbox className="flex row justify-center">
-      <img src={payload.src} alt={payload.alt} className='rounded-md w-max' />
-    </SlideshowLightbox>
+      <picture>
+          {Object.keys(sources).map((format) => (
+              <source
+                  type={format}
+                  key={format}
+                  srcSet={sources[format].srcSet}
+                  sizes={sources[format].sizes}
+              />
+          ))}
+          <img src={sources.fallback} alt="" />
+      </picture>
+  );
+}
+
+export default function ImageCard(props: Props) {
+  const payload = props.payload;
+  const [open, setOpen] = useState(false);
+
+  return (
+    <div className="flex row justify-center">
+      <SmartImage fallback={payload.src} sources={payload.srcset} alt={payload.alt} className='rounded-md w-max' onClick={() => setOpen(true)}/>
+      <Lightbox
+        open={open}
+        close={() => setOpen(false)}
+        slides={[payload.srcset]}
+        render={{ slide: responsiveImage }}
+      />
+    </div>
   );
 }

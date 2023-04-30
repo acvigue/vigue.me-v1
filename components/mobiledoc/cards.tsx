@@ -11,19 +11,16 @@ import ButtonCard from './cards/ButtonCard';
 import CalloutCard from './cards/CalloutCard';
 import ToggleCard from './cards/ToggleCard';
 import VideoCard from './cards/VideoCard';
+import { getResizedImageURLS } from '@/lib/imgproxy';
 
 interface CardProperties {
   env: Object;
   payload: Object;
 }
 
-const cardRenderer = function (Wrapper) {
+const cardRenderer = function (Wrapper, name) {
   const component = function ({ env, payload }) {
-    const props = {
-      payload
-    };
-
-    return <Wrapper {...props} key={payload.key} className="w-full" />;
+    return <Wrapper payload={payload} key={payload.key} className="w-full" />;
   }
   
   component.displayName = `RenderedCard_${Wrapper.displayName || "unknown"}`;
@@ -34,7 +31,7 @@ function renderComponentAsCard(Wrapper, name: String) {
   return {
     name,
     type: 'dom',
-    render: cardRenderer(Wrapper)
+    render: cardRenderer(Wrapper, name)
   };
 }
 

@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
-import { SlideshowLightbox } from 'lightbox.js-react';
-import 'lightbox.js-react/dist/index.css';
+
+import PhotoAlbum, { RenderPhoto, Photo } from "react-photo-album";
 
 export interface Props {
   payload: {
@@ -16,18 +16,40 @@ interface Image {
   width: number;
   height: number;
   src: string;
+  title: string;
 }
 
-
+const renderPhoto2: RenderPhoto = ({ layout, layoutOptions, imageProps: { alt, style, ...restImageProps } }) => {
+  const sources = JSON.parse(restImageProps.title);
+  return (
+    <div
+      style={{
+        boxSizing: "content-box",
+        alignItems: "center",
+        width: style?.width,
+        padding: `${layoutOptions.padding - 2}px`,
+        paddingBottom: 0,
+      }}
+    >
+      <picture>
+        {Object.keys(sources).map((format) => (
+          <source
+            type={format}
+            key={format}
+            srcSet={sources[format].srcSet}
+            sizes={sources[format].sizes}
+          />
+        ))}
+        <img src={sources.fallback} alt={alt} style={{ ...style, width: "100%", padding: 0 }} {...restImageProps} />
+      </picture>
+    </div>);
+};
 
 export default function GalleryCard(props: Props) {
   const payload = props.payload;
+  console.log(JSON.stringify(props));
 
   return (
-    <SlideshowLightbox className="flex gap-4 justify-between w-full max-w-full flex-wrap">
-      {payload.images.map((image) => (
-        <img src={image.src} key={image.src} alt='Image Gallery Item' className='rounded-md max-h-80 flex-grow object-cover'/>
-      ))}
-    </SlideshowLightbox>
+    <PhotoAlbum layout="rows" photos={payload.images} renderPhoto={renderPhoto2} />
   );
 }
