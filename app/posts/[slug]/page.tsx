@@ -129,7 +129,6 @@ export default async function Page({ params: { slug } }) {
   );
 }
 
-/*
 export async function generateStaticParams() {
   const posts = await getPosts({});
 
@@ -138,4 +137,3 @@ export async function generateStaticParams() {
       return { slug };
     });
 }
-*/

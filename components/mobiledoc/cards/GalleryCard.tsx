@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import PhotoAlbum, { RenderPhoto, Photo } from "react-photo-album";
 import Lightbox from "yet-another-react-lightbox";
 import "yet-another-react-lightbox/styles.css";
@@ -73,7 +73,7 @@ const responsiveImage = function ({ slide, rect }) {
 export default function GalleryCard(props: Props) {
   const payload = props.payload;
 
-  const [index,setIndex] = useState(-1);
+  const [index, setIndex] = useState(-1);
   const srcsets = props.payload.images.map((image) => {
     return image.srcset;
   })
@@ -87,6 +87,18 @@ export default function GalleryCard(props: Props) {
         slides={srcsets}
         render={{ slide: responsiveImage }}
         plugins={[Zoom]}
+        animation={{ zoom: 500 }}
+        zoom={{
+          maxZoomPixelRatio: 1,
+          zoomInMultiplier: 2,
+          doubleTapDelay: 300,
+          doubleClickDelay: 300,
+          doubleClickMaxStops: 2,
+          keyboardMoveDistance: 50,
+          wheelZoomDistanceFactor: 100,
+          pinchZoomDistanceFactor: 100,
+          scrollToZoom: true,
+        }}
       />
     </div>
   );
