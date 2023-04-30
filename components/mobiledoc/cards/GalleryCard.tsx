@@ -1,8 +1,11 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
 
+import { useState } from "react";
 import PhotoAlbum, { RenderPhoto, Photo } from "react-photo-album";
-
+import Lightbox from "yet-another-react-lightbox";
+import "yet-another-react-lightbox/styles.css";
+import Zoom from "yet-another-react-lightbox/plugins/zoom";
 export interface Props {
   payload: {
     images: Image[]
@@ -17,6 +20,7 @@ interface Image {
   height: number;
   src: string;
   title: string;
+  srcset: any;
 }
 
 const renderPhoto2: RenderPhoto = ({ layout, layoutOptions, imageProps: { alt, style, ...restImageProps } }) => {
@@ -30,6 +34,7 @@ const renderPhoto2: RenderPhoto = ({ layout, layoutOptions, imageProps: { alt, s
         padding: `${layoutOptions.padding - 2}px`,
         paddingBottom: 0,
       }}
+      onClick={restImageProps.onClick}
     >
       <picture>
         {Object.keys(sources).map((format) => (
@@ -37,7 +42,6 @@ const renderPhoto2: RenderPhoto = ({ layout, layoutOptions, imageProps: { alt, s
             type={format}
             key={format}
             srcSet={sources[format].srcSet}
-            sizes={sources[format].sizes}
           />
         ))}
         <img src={sources.fallback} alt={alt} style={{ ...style, width: "100%", padding: 0 }} {...restImageProps} />
@@ -45,11 +49,45 @@ const renderPhoto2: RenderPhoto = ({ layout, layoutOptions, imageProps: { alt, s
     </div>);
 };
 
-export default function GalleryCard(props: Props) {
-  const payload = props.payload;
-  console.log(JSON.stringify(props));
+const responsiveImage = function ({ slide, rect }) {
+  const sources = slide;
+
+  if (sources == undefined) {
+    return (<div></div>);
+  }
 
   return (
-    <PhotoAlbum layout="rows" photos={payload.images} renderPhoto={renderPhoto2} />
+    <picture>
+      {Object.keys(sources).map((format) => (
+        <source
+          type={format}
+          key={format}
+          srcSet={sources[format].srcSet}
+        />
+      ))}
+      <img src={sources.fallback} alt="" />
+    </picture>
+  );
+}
+
+export default function GalleryCard(props: Props) {
+  const payload = props.payload;
+
+  const [index,setIndex] = useState(-1);
+  const srcsets = props.payload.images.map((image) => {
+    return image.srcset;
+  })
+
+  return (
+    <div>
+      <PhotoAlbum layout="rows" photos={payload.images} renderPhoto={renderPhoto2} onClick={({ index }) => setIndex(index)} />
+      <Lightbox
+        open={index >= 0}
+        close={() => setIndex(-1)}
+        slides={srcsets}
+        render={{ slide: responsiveImage }}
+        plugins={[Zoom]}
+      />
+    </div>
   );
 }

@@ -13,7 +13,7 @@ export default function BlogPost({ title, excerpt, slug, published_at, feature_i
           <div className="absolute w-full h-full bg-gray-500 opacity-20 dark:opacity-25 dark:mix-blend-overlay -rotate-3 rounded group-hover:rotate-0 transition transform-gpu duration-300"></div>
           <div className="rounded">
             <div className="relative rounded w-full bg-cover bg-center">
-              <SmartImage sizes="(min-width: 640px) 50vw, (min-width: 768px) 33vw, 100vw" fallback={feature_image} sources={feature_image_sources} alt='' className='object-cover w-full h-56 rounded' />
+              <SmartImage sizes="(min-width: 1024px) 25vw, (min-width: 640px) 40vw, 80vw" fallback={feature_image} sources={feature_image_sources} alt='' className='object-cover w-full h-56 rounded' />
             </div>
             <div className="rounded absolute top-0 left-0 w-full h-full group-hover:opacity-100 opacity-0 bg-gradient-to-t from-black to-transparent transition transform-gpu duration-300" />
           </div>

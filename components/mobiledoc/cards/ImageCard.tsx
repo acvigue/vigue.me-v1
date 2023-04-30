@@ -3,6 +3,7 @@
 
 import { useState } from "react";
 import Lightbox from "yet-another-react-lightbox";
+import Zoom from "yet-another-react-lightbox/plugins/zoom";
 import "yet-another-react-lightbox/styles.css";
 import SmartImage from "@/components/SmartImage";
 
@@ -33,7 +34,6 @@ const responsiveImage = function({ slide, rect }) {
                   type={format}
                   key={format}
                   srcSet={sources[format].srcSet}
-                  sizes={sources[format].sizes}
               />
           ))}
           <img src={sources.fallback} alt="" />
@@ -47,12 +47,13 @@ export default function ImageCard(props: Props) {
 
   return (
     <div className="flex row justify-center">
-      <SmartImage fallback={payload.src} sources={payload.srcset} alt={payload.alt} className='rounded-md w-max' onClick={() => setOpen(true)}/>
+      <SmartImage fallback={payload.src} sources={payload.srcset} sizes="90vw" alt={payload.alt} className='rounded-md w-max' onClick={() => setOpen(true)}/>
       <Lightbox
         open={open}
         close={() => setOpen(false)}
         slides={[payload.srcset]}
         render={{ slide: responsiveImage }}
+        plugins={[Zoom]}
       />
     </div>
   );

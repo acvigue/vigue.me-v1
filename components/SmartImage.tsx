@@ -8,7 +8,6 @@ export default function SmartImage({ sources, fallback, alt, sizes='100vw', ...p
                     type={format}
                     key={format}
                     srcSet={sources[format].srcSet}
-                    sizes={sizes}
                 />
             ))}
             <img src={fallback} alt={alt} {...props} />

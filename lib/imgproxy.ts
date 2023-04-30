@@ -1,13 +1,14 @@
 import pb, { FormatOptions, ResizeType } from "@bitpatty/imgproxy-url-builder";
 
-export function getResizedImageURLS(url: string, width: number, height: number, sizes="100vw") {
-  const numSizes = 6;
-  const formats = ["avif", "webp", "jpg"];
-  const x_sizes = [];
+const numSizes = 6;
+const formats = ["avif", "webp", "jpg"];
+
+export function getResizedImageURLS(url: string, width: number, height: number) {
   const urls = {};
+  const sizes = [];
 
   for (let i = 1; i <= numSizes; i++) {
-    x_sizes.push({ width: width / 2^i, height: height / 2^i });
+    sizes.push({ width: width / i, height: height / i });
   }
 
   for(const format of formats) {
@@ -16,10 +17,10 @@ export function getResizedImageURLS(url: string, width: number, height: number, 
     const srcs = [];
     const breakSizes = [];
 
-    for(const [i, size] of x_sizes.entries()) {
+    for(const [i, size] of sizes.entries()) {
       const temp = pb()
         .format(format as FormatOptions)
-        .quality(75)
+        .quality(75-(i*10))
         .resize({
           type: ResizeType.AUTO,
           width: Math.round(size.width),
@@ -37,7 +38,7 @@ export function getResizedImageURLS(url: string, width: number, height: number, 
       breakSizes.push(`(max-width: ${Math.round(size.width)}px) ${Math.round(size.width)}px`);
     };
     urls[mime]["srcSet"] = srcs.join(", ");
-    urls[mime]["sizes"] = sizes;
+    urls[mime]["sizes"] = "100vw";
   }
 
   return urls;
