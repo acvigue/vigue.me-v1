@@ -1,9 +1,9 @@
 /** @type {import('next').NextConfig} */
 module.exports = {
   reactStrictMode: true,
-  experimental: { appDir: true },
+  experimental: { appDir: true, experimentalReact: true },
   images: {
-    domains: ["vigue.me", "dnzye6trx9wog.cloudfront.net"],
+    domains: ["vigue.me", "dnzye6trx9wog.cloudfront.net", "cdn.vigue.me"],
   },
   webpack: (config, { dev, isServer }) => {
     if (!dev && !isServer) {

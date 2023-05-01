@@ -1,5 +1,4 @@
 import Link from "next/link";
-import ThemeSwitch from "@/components/ThemeSwitch";
 import NavWrapper from "@/components/NavWrapper";
 import config from "@/config";
 
@@ -11,14 +10,17 @@ export default function Navbar() {
           <div className="my-1 inline-block">
             <Link
               href="/"
-              className="flex items-center justify-between rounded px-2.5 py-1.5 text-gray-900 dark:text-gray-100 "
+              className="flex items-center justify-between rounded pl-2.5 py-1.5 text-gray-900 dark:text-gray-100 "
             >
-              <span className="flex select-none items-center justify-between pr-2 text-sm" aria-hidden="true">
-                <img src={config.headshot} className="w-10" alt="headshot image"/>
+              <span className="select-none items-center justify-between pr-2 text-sm flex" aria-hidden="true">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src={config.headshot} className="md:w-10 w-8" alt="headshot image" />
               </span>
               <span className="font-bold">{config.name}</span>
             </Link>
           </div>
+        </div>
+        <div className="flex">
           {config.nav.map(({ name, href }, i, a) => (
             <div key={name} className="my-1 flex items-center">
               <Link
@@ -30,7 +32,6 @@ export default function Navbar() {
             </div>
           ))}
         </div>
-        <ThemeSwitch />
       </div>
     </NavWrapper>
   );

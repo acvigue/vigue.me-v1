@@ -1,5 +1,5 @@
 import { getPages, getPage, getPost } from "@/lib/ghost";
-import { GhostContent } from "@/lib/render";
+import MobileDocRenderer from "@/components/MobileDocRenderer";
 import { ResolvingMetadata, Metadata } from "next";
 import config from "@/config";
 import { notFound, redirect } from "next/navigation";
@@ -65,7 +65,8 @@ export default async function Page({ params: { slug } }) {
             <Script src="/scripts/cards.min.js"></Script>
             <Script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></Script>
             <Script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></Script>
-            <GhostContent html={page.html ?? ""} />
+            {/* @ts-expect-error Server Component */}
+            <MobileDocRenderer mobiledoc={page.mobiledoc} />
           </div>
         </main>
       </>
