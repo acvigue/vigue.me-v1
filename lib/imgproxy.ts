@@ -1,7 +1,7 @@
 import pb, { FormatOptions, ResizeType } from "@bitpatty/imgproxy-url-builder";
 
 const numSizes = 6;
-const formats = ["avif", "webp", "jpg"];
+const formats = ["webp", "jpg"];
 
 export function getResizedImageURLS(url: string, width: number, height: number) {
   const urls = {};
