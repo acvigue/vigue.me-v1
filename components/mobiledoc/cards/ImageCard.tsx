@@ -47,7 +47,7 @@ export default function ImageCard(props: Props) {
 
   return (
     <div className="flex row justify-center">
-      <SmartImage fallback={payload.src} sources={payload.srcset} sizes="90vw" alt={payload.alt} className='rounded-md' style={{maxHeight:payload.height}} onClick={() => setOpen(true)}/>
+      <SmartImage fallback={payload.src} sources={payload.srcset} sizes="90vw" alt={payload.alt} className='rounded-md' style={{maxHeight:payload.height}} loading="lazy" onClick={() => setOpen(true)}/>
       <Lightbox
         open={open}
         close={() => setOpen(false)}

@@ -10,7 +10,7 @@ export default function SmartImage({ sources, fallback, alt, sizes='100vw', ...p
                     srcSet={sources[format].srcSet}
                 />
             ))}
-            <img src={fallback} alt={alt} {...props} loading="lazy"/>
+            <img src={fallback} alt={alt} {...props}/>
         </picture>
     );
 }
