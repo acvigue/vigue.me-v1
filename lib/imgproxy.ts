@@ -1,7 +1,7 @@
 import pb, { FormatOptions, ResizeType } from "@bitpatty/imgproxy-url-builder";
 
 const numSizes = 6;
-const formats = ["webp", "jpg"];
+const formats = ["avif", "webp", "jpg"];
 
 export function getResizedImageURLS(url: string, width: number, height: number) {
   const urls = {};
@@ -20,14 +20,14 @@ export function getResizedImageURLS(url: string, width: number, height: number) 
     for(const [i, size] of sizes.entries()) {
       const temp = pb()
         .format(format as FormatOptions)
-        .quality(75-(i*10))
+        .quality(65-(i*10))
         .resize({
           type: ResizeType.AUTO,
           width: Math.round(size.width),
           height: Math.round(size.height),
         })
         .build({
-          path: url,
+          path: url.replace('https://dnzye6trx9wog.cloudfront.net', 's3://blogcdn-vigue-me'),
           signature: {
             key: process.env.IMGPROXY_KEY,
             salt: process.env.IMGPROXY_SALT,
