@@ -44,7 +44,7 @@ const renderPhoto2: RenderPhoto = ({ layout, layoutOptions, imageProps: { alt, s
             srcSet={sources[format].srcSet}
           />
         ))}
-        <img src={sources.fallback} alt={alt} style={{ ...style, width: "100%", padding: 0 }} {...restImageProps} />
+        <img src={sources.fallback} alt={alt} loading="lazy" style={{ ...style, width: "100%", padding: 0 }} {...restImageProps} />
       </picture>
     </div>);
 };
