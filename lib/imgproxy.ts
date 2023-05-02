@@ -27,7 +27,7 @@ export function getResizedImageURLS(url: string, width: number, height: number) 
           height: Math.round(size.height),
         })
         .build({
-          path: url.replace('https://dnzye6trx9wog.cloudfront.net', 's3://blogcdn-vigue-me'),
+          path: url,
           signature: {
             key: process.env.IMGPROXY_KEY,
             salt: process.env.IMGPROXY_SALT,
