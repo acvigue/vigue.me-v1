@@ -38,9 +38,8 @@ export function getResizedImageURLS(url: string, width: number, height: number) 
       breakSizes.push(`(max-width: ${Math.round(size.width)}px) ${Math.round(size.width)}px`);
     };
     urls[mime]["srcSet"] = srcs.join(", ");
-    urls[mime]["sizes"] = "100vw";
+    urls[mime]["sizes"] = "";
   }
-
   return urls;
 }
 
