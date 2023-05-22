@@ -51,6 +51,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         paths.push(`/tags/${tag}`);
       }
     }
+    paths.push(`/`);
   } else if (body.post !== undefined) {
     const post = body.post;
     if (Object.keys(post.current).length === 0) {
@@ -81,6 +82,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
       paths.push(`/posts`);
     }
+    paths.push(`/`);
   } else {
     res.status(400).send({ error: "invalid_body" });
     return;
