@@ -21,6 +21,7 @@ import { Metadata } from "next";
 export const revalidate = 3600;
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://vigue.me"),
   title: {
     template: `%s - ${config.name}`,
     default: config.name

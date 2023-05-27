@@ -90,7 +90,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
   if(paths.length > 0) {
     await Promise.all(paths.map(path => res.revalidate(path)));
-    res.status(200).send({ revalidated: paths });
   }
+  res.status(200).send({ revalidated: paths });
 }
 
