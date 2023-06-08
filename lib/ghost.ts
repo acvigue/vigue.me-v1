@@ -111,10 +111,9 @@ async function _getPost(post_id?: string, post_slug?: string) {
       }
       if (name == "gallery") {
         for (const [x, image] of payload["images"].entries()) {
-          const title = JSON.stringify(getResizedImageURLS(image.src, image.width, image.height));
+          const srcset = getResizedImageURLS(image.src, image.width, image.height);
           mobiledoc["cards"][i][1]["images"][x] = {
-            title,
-            srcset: JSON.parse(title),
+            srcset,
             ...image,
           };
         }

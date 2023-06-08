@@ -63,7 +63,7 @@ export default async function Page({ params: { slug } }) {
 
   if (not_found) notFound();
 
-  const feature_image_sources = getResizedImageURLS(post.feature_image, 2000, 1500);
+  const feature_image_srcset = getResizedImageURLS(post.feature_image, 2000, 1500);
 
   return (
     <main className="mb-16 flex w-full flex-col items-center justify-center pt-4">
@@ -81,7 +81,7 @@ export default async function Page({ params: { slug } }) {
         <div className="relative">
           <div className="absolute w-full h-full transform bg-gray-600 opacity-20 dark:opacity-25 -rotate-2 rounded"></div>
           <div className="relative">
-            <SmartImage sources={feature_image_sources} sizes="90vw" fallback={post.feature_image} alt={post.feature_image_alt ?? ''} className='object-cover w-full max-h-[300px] md:max-h-[500px] rounded'/>
+            <SmartImage srcset={feature_image_srcset} sizes="90vw" alt={post.feature_image_alt ?? 'Post Feature Image'} className='object-cover w-full max-h-[300px] md:max-h-[500px] rounded'/>
           </div>
         </div>
       </div>

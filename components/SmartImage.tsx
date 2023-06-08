@@ -1,16 +1,11 @@
-import { getResizedImageURLS } from "@/lib/imgproxy";
-
-export default function SmartImage({ sources, fallback, alt, sizes='100vw', ...props }) {
+export default function SmartImage({ srcset, ...props }) {
+    const fallback = srcset[0].src
+    const srcs = [];
+    for(const src of srcset) {
+        srcs.push(`${src.src} ${src.width.toFixed(0)}w`)
+    }
     return (
-        <picture>
-            {Object.keys(sources).map((format) => (
-                <source
-                    type={format}
-                    key={format}
-                    srcSet={sources[format].srcSet}
-                />
-            ))}
-            <img src={fallback} alt={alt} {...props}/>
-        </picture>
+        // eslint-disable-next-line @next/next/no-img-element, jsx-a11y/alt-text
+        <img src={fallback} srcSet={srcs.join(", ")} {...props} />
     );
 }
