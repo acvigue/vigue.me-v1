@@ -1,24 +1,20 @@
 /* eslint-disable @next/next/no-img-element */
 'use client';
-export interface Props {
-    payload: {
-        version: string,
-        type: string,
-        url: string,
-        metadata: {
-            title: string,
-            description: string,
-            author: string,
-            publisher: string,
-            thumbnail: string,
-            icon: string
-        }
+export interface BookmarkCardPayload {
+    version: string,
+    type: string,
+    url: string,
+    metadata: {
+        title: string,
+        description: string,
+        author: string,
+        publisher: string,
+        thumbnail: string,
+        icon: string
     }
 }
 
-export default function BookmarkCard(props: Props) {
-    const payload = props.payload;
-
+export default function BookmarkCard({payload}: {payload: BookmarkCardPayload}) {
     return (
         <div onClick={(e) => {
             e.preventDefault();
@@ -42,8 +38,8 @@ export default function BookmarkCard(props: Props) {
                     </span>
                 </div>
             </div>
-            <div className="col-span-4 flex justify-center align-center min-h-32">
-                <img src={payload.metadata.thumbnail} alt='bookmark image' className="flex-shrink-0 w-full object-cover" />
+            <div className="col-span-4 flex justify-center align-center min-h-40">
+                <img src={payload.metadata.thumbnail} alt='bookmark image' className="flex-shrink-0 w-full object-cover" style={{height: 'intrinsic'}} />
             </div>
         </div>
     );

@@ -1,5 +1,5 @@
 import { getPages, getPage, getPost } from "@/lib/ghost";
-import MobileDocRenderer from "@/components/MobileDocRenderer";
+import MobiledocRenderer from "@/components/MobiledocRenderer";
 import { ResolvingMetadata, Metadata } from "next";
 import config from "@/config";
 import { notFound, redirect } from "next/navigation";
@@ -57,15 +57,13 @@ export default async function Page({ params: { slug } }) {
   } else {
     return (
       <>
-        <main className="mx-auto mb-16 flex w-full max-w-4xl flex-col items-start justify-center">
+        <main className="mx-auto mb-16 flex w-full max-w-5xl flex-col items-start justify-center">
           {(page.title.indexOf("[NO_TITLE]") == -1) && (
             <h1 className="mb-4 text-3xl font-bold tracking-tight text-pink-600 md:text-5xl">{page.title.replace("[NO_INDEX]", "")}</h1>
           )}
-          <div className="w-full antialiased">
-            <Script src="/scripts/cards.min.js"></Script>
-            <Script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></Script>
-            <Script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></Script>
-            <MobileDocRenderer mobiledoc={page.mobiledoc} />
+          <div className="w-full antialiased Mobiledoc">
+            {/* @ts-expect-error Server Component */}
+            <MobiledocRenderer mobiledoc={page.mobiledoc} />
           </div>
         </main>
       </>

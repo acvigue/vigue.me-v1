@@ -1,4 +1,7 @@
 export default function SmartImage({ srcset, ...props }) {
+    if(!srcset) {
+        return (<></>)
+    }
     const fallback = srcset[0].src
     const srcs = [];
     for(const src of srcset) {

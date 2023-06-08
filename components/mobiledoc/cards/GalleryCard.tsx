@@ -7,11 +7,9 @@ import Lightbox from "yet-another-react-lightbox";
 import "yet-another-react-lightbox/styles.css";
 import Zoom from "yet-another-react-lightbox/plugins/zoom";
 import Counter from "yet-another-react-lightbox/plugins/counter";
-export interface Props {
-  payload: {
-    images: Image[]
-    key: number;
-  }
+export interface GalleryCardPayload {
+  images: Image[]
+  key: number;
 }
 
 interface Image {
@@ -24,10 +22,10 @@ interface Image {
   srcset: any;
 }
 
-export default function GalleryCard(props: Props) {
+export default function GalleryCard({payload}: {payload: GalleryCardPayload}) {
   const [index, setIndex] = useState(-1);
 
-  const albumImages: Photo[] = props.payload.images.map((image) => {
+  const albumImages: Photo[] = payload.images.map((image) => {
     return {
       srcSet: image.srcset,
       src: image.src,

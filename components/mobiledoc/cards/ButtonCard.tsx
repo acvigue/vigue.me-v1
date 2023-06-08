@@ -1,17 +1,13 @@
 'use client';
 
-export interface Props {
-    payload: {
-        alignment: string;
-        buttonText: string;
-        buttonUrl: string;
-        key: number;
-    }
+export interface ButtonCardPayload {
+    alignment: string;
+    buttonText: string;
+    buttonUrl: string;
+    key: number;
 }
 
-export default function ButtonCard(props: Props) {
-    const payload = props.payload;
-
+export default function ButtonCard({payload}: {payload: ButtonCardPayload}) {
     const containerClass = `flex w-full justify-${payload.alignment == 'center' ? 'center' : 'start'}`;
 
     return (

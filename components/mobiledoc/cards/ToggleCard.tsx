@@ -2,17 +2,13 @@
 
 import { useState } from "react";
 
-export interface Props {
-    payload: {
-        heading: string;
-        content: string;
-        key: number;
-    }
+export interface ToggleCardPayload {
+    heading: string;
+    content: string;
+    key: number;
 }
 
-export default function ToggleCard(props: Props) {
-    const payload = props.payload;
-
+export default function ToggleCard({payload}: {payload: ToggleCardPayload}) {
     const [showing, setShowing] = useState(false);
     const containerClass = ``;
 

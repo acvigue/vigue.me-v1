@@ -1,25 +1,32 @@
-import MobiledocReactRenderer from '@dailybeast/mobiledoc-react-renderer';
+import Renderer from 'react-mobiledoc-renderer';
 import "styles/mobiledoc.scss";
 
 import cards from './mobiledoc/cards';
-import { getResizedImageURLS } from '@/lib/imgproxy';
-//import atoms from './mobiledoc/atoms';
-//import markups from './mobiledoc/markups';
 
-export interface Props {
+export interface MobiledocRendererProps {
     mobiledoc: Object;
 }
 
-export default function MobileDocRenderer(props: Props) {
-    const options = {
-        cards,
-        atoms: [],
-        markups: []
-    };
+const options = {
+    cards,
+    atoms: {
+        "soft-return": () => {
+            return (<br></br>)
+        }
+    }
+};
+
+const renderer = new Renderer(options);
+
+export default async function MobiledocRenderer(props: MobiledocRendererProps) {
 
     let mobiledoc = props.mobiledoc;
 
-    const renderer = new MobiledocReactRenderer(options);
-    
-    return renderer.render(mobiledoc);
+    try {
+        const { result } = await renderer.render(mobiledoc);
+        return result
+    } catch(e) {
+        console.log('Mobiledoc render error: ', e, mobiledoc);
+        return (<p>Rendering error</p>)
+    }
 }

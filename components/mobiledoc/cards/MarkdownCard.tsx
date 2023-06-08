@@ -1,16 +1,12 @@
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 
-export interface Props {
-    payload: {
-        markdown: string;
-        key: number;
-    }
+export interface MarkdownCardPayload {
+    markdown: string;
+    key: number;
 }
 
-export default function MarkdownCard(props: Props) {
-    const payload = props.payload;
-
+export default function MarkdownCard({payload}: {payload: MarkdownCardPayload}) {
     return (
         <ReactMarkdown remarkPlugins={[remarkGfm]}>
             {payload.markdown}

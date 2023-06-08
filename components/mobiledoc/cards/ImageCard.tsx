@@ -7,21 +7,18 @@ import Zoom from "yet-another-react-lightbox/plugins/zoom";
 import "yet-another-react-lightbox/styles.css";
 import SmartImage from "@/components/SmartImage";
 
-export interface Props {
-  payload: {
-    src: string;
-    alt?: string;
-    title: string;
-    width: number;
-    height: number;
-    href?: string;
-    srcset: any;
-    key: number;
-  }
+export interface ImageCardPayload {
+  src: string;
+  alt?: string;
+  title: string;
+  width: number;
+  height: number;
+  href?: string;
+  srcset: any;
+  key: number;
 }
 
-export default function ImageCard(props: Props) {
-  const payload = props.payload;
+export default function ImageCard({payload}: {payload: ImageCardPayload}) {
   const [open, setOpen] = useState(false);
 
   const lbImage: SlideImage = {
@@ -33,7 +30,7 @@ export default function ImageCard(props: Props) {
 
   return (
     <div className="flex row justify-center">
-      <SmartImage srcset={payload.srcset} sizes="90vw" alt={payload.alt} className='rounded-md' style={{maxHeight:payload.height}} loading="lazy" onClick={() => setOpen(true)}/>
+      <SmartImage srcset={payload.srcset} sizes="90vw" alt={payload.alt} className='rounded-md' style={{ maxHeight: payload.height }} loading="lazy" onClick={() => setOpen(true)} />
       <Lightbox
         open={open}
         close={() => setOpen(false)}

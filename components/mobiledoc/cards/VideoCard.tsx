@@ -3,14 +3,12 @@
 import { DefaultPlayer as Video } from 'react-html5video';
 import 'react-html5video/dist/styles.css';
 
-export interface Props {
-  payload: {
-    loop: boolean;
-    src: string;
-    thumbnailSrc: string;
-    mimeType: string;
-    key: number;
-  }
+export interface VideoCardPayload {
+  loop: boolean;
+  src: string;
+  thumbnailSrc: string;
+  mimeType: string;
+  key: number;
 }
 
 var canUseDOM = !!(
@@ -18,9 +16,7 @@ var canUseDOM = !!(
     window.document && window.document.createElement)
 );
 
-export default function VideoCard(props: Props) {
-  const payload = props.payload;
-
+export default function VideoCard({payload}: {payload: VideoCardPayload}) {
   const controls = ['PlayPause', 'Seek', 'Time', 'Fullscreen'];
   if (!payload.loop) {
     controls.push('Volume');

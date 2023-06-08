@@ -14,7 +14,6 @@
   },
   "dependencies": {
     "@bitpatty/imgproxy-url-builder": "^1.3.3",
-    "@dailybeast/mobiledoc-react-renderer": "^1.5.0",
     "@fontsource/ibm-plex-mono": "^5.0.1",
     "@fontsource/inter": "^5.0.1",
     "@fontsource/jetbrains-mono": "^5.0.1",
@@ -47,6 +46,7 @@
     "react-images": "^1.2.0-beta.7",
     "react-katex": "^3.0.1",
     "react-markdown": "^8.0.7",
+    "react-mobiledoc-renderer": "^0.1.0",
     "react-photo-album": "^2.1.0",
     "react-player": "^2.11.0",
     "react-responsive-carousel": "^3.2.23",

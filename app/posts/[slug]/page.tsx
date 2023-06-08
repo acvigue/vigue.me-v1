@@ -1,6 +1,6 @@
 import { getPosts, getPost } from "@/lib/ghost";
 import { GhostContent } from "@/lib/render";
-import MobileDocRenderer from "components/MobileDocRenderer";
+import MobiledocRenderer from "@/components/MobiledocRenderer";
 import { notFound } from "next/navigation";
 import { format } from "date-fns";
 import Link from "next/link";
@@ -86,11 +86,9 @@ export default async function Page({ params: { slug } }) {
         </div>
       </div>
 
-      <div className="w-full max-w-4xl antialiased mb-8 px-4 md:px-0">
-        <Script src="/scripts/cards.min.js"></Script>
-        <Script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></Script>
-        <Script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></Script>
-        <MobileDocRenderer mobiledoc={post.mobiledoc} />
+      <div className="w-full max-w-5xl antialiased mb-8 px-4 md:px-0 flex flex-col gap-5 Mobiledoc">
+        {/* @ts-expect-error Server Component */}
+        <MobiledocRenderer mobiledoc={post.mobiledoc} />
       </div>
 
       <div className="w-full max-w-6xl flex justify-center items-center flex-col md:flex-row md:justify-between">

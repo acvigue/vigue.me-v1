@@ -1,14 +1,11 @@
-export interface Props {
-  payload: {
-    html: string;
-    key: number;
-  }
+export interface EmbedCardPayload {
+  html: string;
+  key: number;
 }
 
-export default function EmbedCard(props: Props) {
-  const payload = props.payload;
+export default function EmbedCard({payload}: {payload: EmbedCardPayload}) {
 
   return (
-    <div dangerouslySetInnerHTML={{__html: payload.html}}></div>
+    <div dangerouslySetInnerHTML={{ __html: payload.html }}></div>
   );
 }
