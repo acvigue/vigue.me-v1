@@ -1,5 +1,3 @@
-"use server";
-
 import MobiledocReactRenderer from '@dailybeast/mobiledoc-react-renderer';
 import "styles/mobiledoc.scss";
 
@@ -12,7 +10,7 @@ export interface Props {
     mobiledoc: Object;
 }
 
-export default async function MobileDocRenderer(props: Props) {
+export default function MobileDocRenderer(props: Props) {
     const options = {
         cards,
         atoms: [],

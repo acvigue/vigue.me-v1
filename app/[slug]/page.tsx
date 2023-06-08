@@ -65,7 +65,6 @@ export default async function Page({ params: { slug } }) {
             <Script src="/scripts/cards.min.js"></Script>
             <Script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></Script>
             <Script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></Script>
-            {/* @ts-expect-error Server Component */}
             <MobileDocRenderer mobiledoc={page.mobiledoc} />
           </div>
         </main>

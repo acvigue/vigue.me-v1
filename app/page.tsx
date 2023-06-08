@@ -10,7 +10,7 @@ export const revalidate = 3600;
 async function getData() {
   const page = await getPage(undefined, "home");
   const posts = await getPosts({filter: ["featured:true"], fields: ['feature_image', 'published_at', 'excerpt', 'slug', 'title', 'id', 'featured']});
-
+  
   if (!page) return null;
 
   return { page, posts };
