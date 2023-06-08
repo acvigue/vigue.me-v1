@@ -1,6 +1,6 @@
 import { getPosts, getPost } from "@/lib/ghost";
 import { GhostContent } from "@/lib/render";
-import MobiledocRenderer from "@/components/MobiledocRenderer";
+import GhostRenderer from "@/components/GhostRenderer";
 import { notFound } from "next/navigation";
 import { format } from "date-fns";
 import Link from "next/link";
@@ -88,7 +88,7 @@ export default async function Page({ params: { slug } }) {
 
       <div className="w-full max-w-5xl antialiased mb-8 px-4 md:px-0 flex flex-col gap-5 Mobiledoc">
         {/* @ts-expect-error Server Component */}
-        <MobiledocRenderer mobiledoc={post.mobiledoc} />
+        <GhostRenderer mobiledoc={post.mobiledoc} />
       </div>
 
       <div className="w-full max-w-6xl flex justify-center items-center flex-col md:flex-row md:justify-between">

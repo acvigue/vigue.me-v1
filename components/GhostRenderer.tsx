@@ -3,7 +3,7 @@ import "styles/mobiledoc.scss";
 
 import cards from './mobiledoc/cards';
 
-export interface MobiledocRendererProps {
+export interface GhostRendererProps {
     mobiledoc: Object;
 }
 
@@ -18,7 +18,7 @@ const options = {
 
 const renderer = new Renderer(options);
 
-export default async function MobiledocRenderer(props: MobiledocRendererProps) {
+export default async function GhostRenderer(props: GhostRendererProps) {
 
     let mobiledoc = props.mobiledoc;
 

@@ -1,5 +1,5 @@
 import { getPages, getPage, getPost } from "@/lib/ghost";
-import MobiledocRenderer from "@/components/MobiledocRenderer";
+import GhostRenderer from "@/components/GhostRenderer";
 import { ResolvingMetadata, Metadata } from "next";
 import config from "@/config";
 import { notFound, redirect } from "next/navigation";
@@ -63,7 +63,7 @@ export default async function Page({ params: { slug } }) {
           )}
           <div className="w-full antialiased Mobiledoc">
             {/* @ts-expect-error Server Component */}
-            <MobiledocRenderer mobiledoc={page.mobiledoc} />
+            <GhostRenderer mobiledoc={page.mobiledoc} />
           </div>
         </main>
       </>
