@@ -87,7 +87,6 @@ export default async function Page({ params: { slug } }) {
       </div>
 
       <div className="w-full max-w-5xl antialiased mb-8 px-4 md:px-0 flex flex-col gap-5 Mobiledoc">
-        {/* @ts-expect-error Server Component */}
         <GhostRenderer mobiledoc={post.mobiledoc} />
       </div>
 

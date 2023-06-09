@@ -62,7 +62,6 @@ export default async function Page({ params: { slug } }) {
             <h1 className="mb-4 text-3xl font-bold tracking-tight text-pink-600 md:text-5xl">{page.title.replace("[NO_INDEX]", "")}</h1>
           )}
           <div className="w-full antialiased Mobiledoc">
-            {/* @ts-expect-error Server Component */}
             <GhostRenderer mobiledoc={page.mobiledoc} />
           </div>
         </main>
