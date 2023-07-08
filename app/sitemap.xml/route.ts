@@ -9,8 +9,12 @@ export async function GET(request: Request) {
   const tags = await getTags({});
 
   const x_pages = pages
-    .filter(({ published_at, title }) => {
-      return (published_at != undefined && title.indexOf("[NO_INDEX]") == -1) || false;
+    .filter(({ published_at, tags }) => {
+      if (published_at === undefined) {
+        return false;
+      }
+      const hasNoIndexTag = tags.filter(({ name }) => name === "#noindex").length > 0;
+      return !hasNoIndexTag;
     })
     .map(({ slug, updated_at }) => {
       return {
@@ -20,17 +24,23 @@ export async function GET(request: Request) {
       };
     });
 
-  const x_tags = tags.map(({ slug }) => {
-    return {
-      loc: config.baseUrl + "/tags/" + slug,
-      lastmod: new Date(Date.now()).toISOString(),
-      priority: 0.7,
-    };
-  });
+  const x_tags = tags
+    .filter(({ name }) => !name.includes("#"))
+    .map(({ slug }) => {
+      return {
+        loc: config.baseUrl + "/tags/" + slug,
+        lastmod: new Date(Date.now()).toISOString(),
+        priority: 0.7,
+      };
+    });
 
   const x_posts = posts
-    .filter(({ published_at, title }) => {
-      return (published_at != undefined && title.indexOf("[NO_INDEX]") == -1) || false;
+    .filter(({ published_at, tags }) => {
+      if (published_at === undefined) {
+        return false;
+      }
+      const hasNoIndexTag = tags.filter(({ name }) => name === "#noindex").length > 0;
+      return !hasNoIndexTag;
     })
     .map(({ slug, updated_at }) => {
       return {
@@ -62,3 +72,4 @@ export async function GET(request: Request) {
 
   return getServerSideSitemap(entries, responseHeaders);
 }
+

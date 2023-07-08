@@ -24,11 +24,16 @@ export default function BlogPost({ title, excerpt, slug, published_at, feature_i
                 {excerpt}
               </div>
             </div>
-            <div className="font-mono text-xs text-white opacity-0 group-hover:opacity-100 transition transform-gpu duration-300">
+            <div className="font-mono text-xs text-white opacity-0 group-hover:opacity-100 transition transform-gpu duration-300 bottom-0 absolute my-4">
               {format(Date.parse(published_at), "MMMM d, yyyy")}
               {(featured) && (
                 <>&nbsp;•&nbsp;Featured</>
               )}
+            </div>
+            <div className="font-mono text-xs text-white opacity-100 group-hover:opacity-0 transition transform-gpu duration-300 flex flex-row items-center justify-start gap-1 absolute bottom-0 my-4">
+              {tags.filter((tag) => tag.slug !== 'projects').map((tag) => (
+                <div className="text-xs font-medium uppercase flex flex-row items-center p-1 bg-pink-600 rounded-lg shadow-2xl" key={tag.id}>{tag.name}</div>
+              ))}
             </div>
           </div>
         </div>

@@ -20,7 +20,7 @@ export async function GET(request: Request) {
 
   posts.map((post) => {
     feed.item({
-      title: post.og_title ?? post.meta_title ?? post.title.replace("[NO_INDEX]", "").replace("[NO_TITLE]", "").trim(),
+      title: post.og_title ?? post.meta_title ?? post.title,
       description: post.og_description ?? post.meta_description ?? post.excerpt,
       url: `${site_url}/posts/${post.slug}`,
       date: post.published_at,
@@ -30,9 +30,10 @@ export async function GET(request: Request) {
   });
 
   pages.map((page) => {
-    if (!page.title.includes("[NO_INDEX]")) {
+    const hasNoIndexTag = page.tags.filter(({ name }) => name === "#noindex").length > 0;
+    if (!hasNoIndexTag) {
       feed.item({
-        title: page.og_title ?? page.meta_title ?? page.title.replace("[NO_INDEX]", "").replace("[NO_TITLE]", "").trim(),
+        title: page.og_title ?? page.meta_title ?? page.title,
         description: page.og_description ?? page.meta_description ?? page.excerpt,
         url: `${site_url}/${page.slug}`,
         date: page.published_at,

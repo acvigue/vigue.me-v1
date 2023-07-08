@@ -25,7 +25,7 @@ export default async function Page() {
     <main className="mx-auto mb-8 lg:mb-16 flex w-full flex-col items-center justify-center">
       <div className="mt-8 lg:mt-32 md:mb-16 flex flex-col gap-4 max-w-6xl w-full">
         <div className="inline-flex flex-wrap items-end gap-4 md:gap-8">
-          <h4 className="inline text-lg md:text-2xl font-bold uppercase leading-none text-pink-600">Hello, my name is {config.shortName}</h4>
+          <h4 className="inline text-lg md:text-2xl font-bold uppercase leading-none text-pink-600">Hey, I&apos;m {config.shortName}</h4>
         </div>
         <p className="lg:text-7xl text-5xl font-serif text-gray-700 dark:text-white">
         I make things.

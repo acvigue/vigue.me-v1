@@ -16,7 +16,7 @@ export async function generateMetadata({ params }): Promise<Metadata> {
     return {};
   }
 
-  const title = page.og_title ?? page.meta_title ?? page.title.replace("[NO_INDEX]", "").replace("[NO_TITLE]", "")
+  const title = page.og_title ?? page.meta_title ?? page.title
 
   return {
     title: title,
@@ -55,11 +55,12 @@ export default async function Page({ params: { slug } }) {
   if (not_found) {
     notFound();
   } else {
+    const hasNoTitle = page.tags.find(({name}) => name === '#notitle');
     return (
       <>
         <main className="mx-auto mb-16 flex w-full max-w-5xl flex-col items-start justify-center">
-          {(page.title.indexOf("[NO_TITLE]") == -1) && (
-            <h1 className="mb-4 text-3xl font-bold tracking-tight text-pink-600 md:text-5xl">{page.title.replace("[NO_INDEX]", "")}</h1>
+          {(!hasNoTitle) && (
+            <h1 className="mb-4 text-3xl font-bold tracking-tight text-pink-600 md:text-5xl">{page.title}</h1>
           )}
           <div className="w-full antialiased Mobiledoc">
             <GhostRenderer mobiledoc={page.mobiledoc} />
