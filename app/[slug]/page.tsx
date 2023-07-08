@@ -55,7 +55,7 @@ export default async function Page({ params: { slug } }) {
   if (not_found) {
     notFound();
   } else {
-    const hasNoTitle = page.tags.find(({name}) => name === '#notitle');
+    const hasNoTitle = page.tags?.find(({name}) => name === '#notitle') ?? false;
     return (
       <>
         <main className="mx-auto mb-16 flex w-full max-w-5xl flex-col items-start justify-center">
