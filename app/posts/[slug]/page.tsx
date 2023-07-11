@@ -79,7 +79,7 @@ export default async function Page({ params: { slug } }) {
           </div>
         </div>
         <div className="relative">
-          <div className="absolute w-full h-full transform bg-gray-600 opacity-20 dark:opacity-25 -rotate-2 rounded"></div>
+          <div className="absolute w-full h-full transform bg-gray-500 opacity-20 dark:opacity-25 -rotate-2 rounded"></div>
           <div className="relative">
             <SmartImage srcset={feature_image_srcset} sizes="90vw" alt={post.feature_image_alt ?? 'Post Feature Image'} className='object-cover w-full max-h-[300px] md:max-h-[500px] rounded'/>
           </div>

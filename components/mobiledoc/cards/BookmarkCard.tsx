@@ -20,7 +20,7 @@ export default function BookmarkCard({payload}: {payload: BookmarkCardPayload}) 
             e.preventDefault();
             window.location.href = payload.url;
         }} className="border-2 dark:border-gray-700 border-gray-200 grid grid-cols-12 rounded-md overflow-clip cursor-pointer hover:scale-105 transition transform-gpu duration-300">
-            <div className="col-span-8 flex flex-col justify-between h-full p-6">
+            <div className="col-span-9 flex flex-col justify-between h-full p-6">
                 <div className="flex flex-col justify-between">
                     <span className="font-bold text-md sm:text-lg">
                         {payload.metadata.title}
@@ -38,8 +38,8 @@ export default function BookmarkCard({payload}: {payload: BookmarkCardPayload}) 
                     </span>
                 </div>
             </div>
-            <div className="col-span-4 flex justify-center align-center min-h-40">
-                <img src={payload.metadata.thumbnail} alt='bookmark image' className="flex-shrink-0 w-full object-cover" style={{height: 'intrinsic'}} />
+            <div className="col-span-3 flex justify-center align-center min-h-32">
+                <img src={payload.metadata.thumbnail} alt='bookmark image' className="flex-shrink-0 object-cover" style={{height: 'intrinsic'}} />
             </div>
         </div>
     );

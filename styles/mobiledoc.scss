@@ -8,6 +8,10 @@
         @apply text-pink-600;
     }
 
+    ul {
+        @apply list-disc;
+    }
+
     h2 {
         @apply text-2xl;
         @apply font-semibold;
