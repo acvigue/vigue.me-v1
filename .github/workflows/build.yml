@@ -25,5 +25,10 @@ jobs:
           cmd: build
         env:
           GHOST_URL: https://cms.vigue.me
+          GHOST_ADMIN_KEY: ${{ secrets.GHOST_ADMIN_KEY }}
           GHOST_CONTENT_KEY: ${{ secrets.GHOST_CONTENT_KEY }}
+          GHOST_WEBHOOK_KEY: 1234test_not_valid
           GHOST_PATH: ghost
+          IMGPROXY_URL: https://cdn.vigue.me
+          IMGPROXY_KEY: 1234testnotvaliud
+          IMGPROXY_SALT: 1234testnotvalid
