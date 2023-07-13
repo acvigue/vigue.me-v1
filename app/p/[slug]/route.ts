@@ -23,6 +23,7 @@ export async function GET(request: NextRequest, { params }: { params: { slug: st
       } else {
         return new Response(`No PostOrPage found with UUID ${slug}`, { status: 400 });
       }
+      url.pathname += `?ts=${Date.now() / 1000}`;
     }
     return NextResponse.redirect(url);
   } catch (e) {

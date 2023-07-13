@@ -33,7 +33,7 @@ export default function ImageCard({ payload }: { payload: ImageCardPayload }) {
       <div className="relative group hover:scale-[0.98] transition transform-gpu duration-300">
         <div className="absolute w-full h-full bg-gray-500 opacity-20 dark:opacity-25 -rotate-2 rounded group-hover:rotate-0 transition transform-gpu duration-300"></div>
         <div className="relative">
-          <SmartImage srcset={payload.srcset} sizes="90vw" alt={payload.alt} className='rounded-md object-fit group-hover:scale-1' style={{ maxHeight: 500 }} loading="lazy" onClick={() => setOpen(true)} />
+          <SmartImage srcset={payload.srcset} sizes="90vw" alt={payload.alt} className='rounded-md object-fit group-hover:scale-1 max-w-full' style={{ maxHeight: 600 }} loading="lazy" onClick={() => setOpen(true)} />
           <Lightbox
             open={open}
             close={() => setOpen(false)}

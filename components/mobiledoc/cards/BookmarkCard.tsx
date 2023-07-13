@@ -19,7 +19,7 @@ export default function BookmarkCard({payload}: {payload: BookmarkCardPayload}) 
         <div onClick={(e) => {
             e.preventDefault();
             window.location.href = payload.url;
-        }} className="border-2 dark:border-gray-700 border-gray-200 grid grid-cols-12 rounded-md overflow-clip cursor-pointer hover:scale-105 transition transform-gpu duration-300">
+        }} className="border-2 dark:border-gray-700 border-gray-200 grid grid-cols-12 rounded-md overflow-clip cursor-pointer hover:scale-[0.98] transition transform-gpu duration-300">
             <div className="col-span-9 flex flex-col justify-between h-full p-6">
                 <div className="flex flex-col justify-between">
                     <span className="font-bold text-md sm:text-lg">
