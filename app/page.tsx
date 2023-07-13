@@ -4,11 +4,12 @@ import PostsList from "@/components/PostsList";
 import config from "site.config";
 import Link from "next/link";
 import { FiMail } from "react-icons/fi";
+import GhostRenderer from "@/components/GhostRenderer";
 
 export const revalidate = 3600;
 
 async function getData() {
-  const page = await getPage(undefined, "home");
+  const page = await getPage("home");
   const posts = await getPosts({filter: ["featured:true"], fields: ['feature_image', 'published_at', 'excerpt', 'slug', 'title', 'id', 'featured']});
   
   if (!page) return null;
@@ -30,7 +31,9 @@ export default async function Page() {
         <p className="lg:text-7xl text-5xl font-serif text-gray-700 dark:text-white">
         I make things.
         </p>
-        <div className="text-lg mt-2 dark:text-gray-400 text-gray-700 md:text-xl font-medium leading-tight antialiased" dangerouslySetInnerHTML={{__html: data.page.html}}/>
+        <div className="text-lg mt-2 dark:text-gray-400 text-gray-700 md:text-xl font-medium leading-tight antialiased Mobiledoc">
+          <GhostRenderer mobiledoc={data.page.mobiledoc} lexical={data.page.lexical}/>
+        </div>
         <div className="flex flex-start flex-shrink">
           <div className="text-white drop-shadow-2xl relative transform-gpu duration-300 group">
             <div className="absolute w-full h-full transform-gpu dark:mix-blend-overlay bg-gray-400 opacity-20 dark:opacity-25 -rotate-6 rounded-lg -z-10 duration-300 group-hover:rotate-0 group-hover:scale-90"></div>

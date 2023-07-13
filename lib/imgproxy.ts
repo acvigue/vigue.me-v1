@@ -1,5 +1,4 @@
 import pb, { ResizeType } from "@bitpatty/imgproxy-url-builder";
-import { Photo } from "react-photo-album";
 
 const numSizes = 6;
 

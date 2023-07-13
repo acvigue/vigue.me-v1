@@ -10,9 +10,9 @@ export const revalidate = 3600;
 export async function generateMetadata({ params }): Promise<Metadata> {
   // read route params
   const slug = params.slug;
-  const page = await getPage(undefined, slug);
+  const page = await getPage(slug);
 
-  if(!page.id) {
+  if (!page.uuid) {
     return {};
   }
 
@@ -37,12 +37,12 @@ export async function generateMetadata({ params }): Promise<Metadata> {
 }
 
 async function getData(slug: string) {
-  const page = await getPage(undefined, slug);
+  const page = await getPage(slug);
 
   //Page not found, try to load post and redirect if possible
-  if (!page.id) {
-    const post = await getPost(undefined, slug);
-    if (!post.id) return { not_found: true };
+  if (!page.uuid) {
+    const post = await getPost(slug);
+    if (!post.uuid) return { not_found: true };
     redirect(`/posts/${post.slug}`);
   }
 
@@ -55,7 +55,7 @@ export default async function Page({ params: { slug } }) {
   if (not_found) {
     notFound();
   } else {
-    const hasNoTitle = page.tags?.find(({name}) => name === '#notitle') ?? false;
+    const hasNoTitle = page.tags?.find(({ name }) => name === '#notitle') ?? false;
     return (
       <>
         <main className="mx-auto mb-16 flex w-full max-w-5xl flex-col items-start justify-center">
@@ -63,7 +63,7 @@ export default async function Page({ params: { slug } }) {
             <h1 className="mb-4 text-3xl font-bold tracking-tight text-pink-600 md:text-5xl">{page.title}</h1>
           )}
           <div className="w-full antialiased Mobiledoc">
-            <GhostRenderer mobiledoc={page.mobiledoc} />
+            <GhostRenderer mobiledoc={page.mobiledoc} lexical={page.lexical} />
           </div>
         </main>
       </>

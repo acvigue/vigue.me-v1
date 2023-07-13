@@ -1,7 +1,7 @@
 import { getPosts, getPost } from "@/lib/ghost";
 import { GhostContent } from "@/lib/render";
 import GhostRenderer from "@/components/GhostRenderer";
-import { notFound } from "next/navigation";
+import { notFound, useRouter } from "next/navigation";
 import { format } from "date-fns";
 import Link from "next/link";
 import { FiArrowLeft, FiArrowRight } from "react-icons/fi";
@@ -10,15 +10,18 @@ import { config } from "@/config";
 import Script from "next/script";
 import { getResizedImageURLS } from "@/lib/imgproxy";
 import SmartImage from "@/components/SmartImage";
+import { useSearchParams } from "next/navigation";
 
 export const revalidate = 3600;
+const uuidV4Regex = /^[A-F\d]{8}-[A-F\d]{4}-4[A-F\d]{3}-[89AB][A-F\d]{3}-[A-F\d]{12}$/i;
+const isValidV4UUID = (uuid) => uuidV4Regex.test(uuid);
 
 export async function generateMetadata({ params }): Promise<Metadata> {
   // read route params
   const slug = params.slug;
-  const post = await getPost(undefined, slug);
+  const post = await getPost(slug);
 
-  if (!post.id) {
+  if (!post.uuid) {
     return {}
   }
 
@@ -41,9 +44,9 @@ export async function generateMetadata({ params }): Promise<Metadata> {
 }
 
 async function getData(slug: string) {
-  const post = await getPost(undefined, slug);
+  const post = await getPost(slug);
 
-  if (!post.id) return { not_found: true };
+  if (!post.uuid) return { not_found: true };
 
   const posts = await getPosts({ include: [] });
   const slugs = posts.map((p) => p.slug);
@@ -52,8 +55,8 @@ async function getData(slug: string) {
   const prevSlug = index > 0 ? slugs[index - 1] : null
   const nextSlug = index < slugs.length - 1 ? slugs[index + 1] : null
 
-  let prevPost = (prevSlug && (await getPost(undefined, prevSlug))) || null
-  let nextPost = (nextSlug && (await getPost(undefined, nextSlug))) || null
+  let prevPost = (prevSlug && (await getPost(prevSlug))) || null
+  let nextPost = (nextSlug && (await getPost(nextSlug))) || null
 
   return { post, pagination: { prevPost, nextPost } };
 }
@@ -73,21 +76,23 @@ export default async function Page({ params: { slug } }) {
           <h4 className="inline text-md font-semibold leading-none text-pink-600 text-center"><i>{post.excerpt}</i></h4>
           <div className="flex items-center -ml-px text-xs tracking-wide uppercase my-4 dark:text-purple-200 text-purple-800">
             <svg width="24" height="24" fill="none" viewBox="0 0 24 24" className="h-4 -ml-1 transform -translate-y-px opacity-75"><path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M4.75 8.75C4.75 7.64543 5.64543 6.75 6.75 6.75H17.25C18.3546 6.75 19.25 7.64543 19.25 8.75V17.25C19.25 18.3546 18.3546 19.25 17.25 19.25H6.75C5.64543 19.25 4.75 18.3546 4.75 17.25V8.75Z"></path> <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M8 4.75V8.25"></path> <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M16 4.75V8.25"></path> <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M7.75 10.75H16.25"></path></svg>
-            <span>{format(Date.parse(post.published_at), "MMMM d, yyyy")}</span>
+            <span>{(post.published_at !== null) ? format(Date.parse(post.published_at), "MMMM d, yyyy") : "UNPUBLISHED"}</span>
             <svg width="24" height="24" fill="none" viewBox="0 0 24 24" className="h-4 ml-2 opacity-75"><path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M19.25 12C19.25 13 17.5 18.25 12 18.25C6.5 18.25 4.75 13 4.75 12C4.75 11 6.5 5.75 12 5.75C17.5 5.75 19.25 11 19.25 12Z"></path> <circle cx="12" cy="12" r="2.25" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5"></circle></svg>
             <span>{post.reading_time} min read</span>
           </div>
         </div>
-        <div className="relative">
-          <div className="absolute w-full h-full transform bg-gray-500 opacity-20 dark:opacity-25 -rotate-2 rounded"></div>
+        {(post.feature_image !== null) && (
           <div className="relative">
-            <SmartImage srcset={feature_image_srcset} sizes="90vw" alt={post.feature_image_alt ?? 'Post Feature Image'} className='object-cover w-full max-h-[300px] md:max-h-[500px] rounded'/>
+            <div className="absolute w-full h-full transform bg-gray-500 opacity-20 dark:opacity-25 -rotate-2 rounded"></div>
+            <div className="relative">
+              <SmartImage srcset={feature_image_srcset} sizes="90vw" alt={post.feature_image_alt ?? 'Post Feature Image'} className='object-cover w-full max-h-[300px] md:max-h-[500px] rounded' />
+            </div>
           </div>
-        </div>
+        )}
       </div>
 
       <div className="w-full max-w-5xl antialiased mb-8 px-4 md:px-0 flex flex-col gap-5 Mobiledoc">
-        <GhostRenderer mobiledoc={post.mobiledoc} />
+        <GhostRenderer mobiledoc={post.mobiledoc} lexical={post.lexical} />
       </div>
 
       <div className="w-full max-w-6xl flex justify-center items-center flex-col md:flex-row md:justify-between">
