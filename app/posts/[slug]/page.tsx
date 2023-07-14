@@ -61,7 +61,12 @@ async function getData(slug: string) {
   return { post, pagination: { prevPost, nextPost } };
 }
 
-export default async function Page({ params: { slug } }) {
+export default async function Page({ params }) {
+  let slug = params.slug as string;
+  if(slug.includes("preview-")) {
+    slug = slug.split("preview-")[1];
+  }
+  console.log(slug);
   const { post, pagination, not_found } = await getData(slug);
 
   if (not_found) notFound();

@@ -9,7 +9,10 @@ export const revalidate = 3600;
 
 export async function generateMetadata({ params }): Promise<Metadata> {
   // read route params
-  const slug = params.slug;
+  let slug = params.slug as string;
+  if(slug.includes("preview-")) {
+    slug = slug.split("preview-")[1];
+  }
   const page = await getPage(slug);
 
   if (!page.uuid) {

@@ -14,16 +14,17 @@ export async function GET(request: NextRequest, { params }: { params: { slug: st
 
   try {
     const page = await getPage(slug);
+    const slugURL = `${Math.round(Date.now() / 1000)}-preview-${slug}`;
     if (page.uuid) {
-      url.pathname = `/${page.uuid}`;
+      url.pathname = `/${slugURL}`;
     } else {
       const post = await getPost(slug);
       if (post.uuid) {
-        url.pathname = `/posts/${post.uuid}`;
+        url.pathname = `/posts/${slugURL}`;
       } else {
         return new Response(`No PostOrPage found with UUID ${slug}`, { status: 400 });
       }
-      url.pathname += `?ts=${Date.now() / 1000}`;
+      //url.pathname = `${Math.round(Date.now() / 1000)}-preview-${url.pathname}`;
     }
     return NextResponse.redirect(url);
   } catch (e) {
