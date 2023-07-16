@@ -7,6 +7,9 @@ import { getResizedImageURLS } from '@/lib/imgproxy';
 import { GalleryCardPayload } from './mobiledoc/cards/GalleryCard';
 import { BookmarkCardPayload } from './mobiledoc/cards/BookmarkCard';
 import { VideoCardPayload } from './mobiledoc/cards/VideoCard';
+import { CodeCardPayload } from './mobiledoc/cards/CodeCard';
+import { EmbedCardPayload } from './mobiledoc/cards/EmbedCard';
+import { CalloutCardPayload } from './mobiledoc/cards/CalloutCard';
 
 export interface GhostRendererProps {
     mobiledoc: Object | null;
@@ -54,17 +57,34 @@ function cardRenderer(childNodes) {
             const cardContents = cardRenderer(card.children);
             return (<a key={ci} href={card.url}>{cardContents}</a>)
         } else if (card.type === "text") {
-            if (card.format === 0) {
-                return card.text
-            } else if (card.format === 1) {
-                return (<b key={ci}>{card.text}</b>)
-            } else if (card.format === 2) {
-                return (<i key={ci}>{card.text}</i>)
-            } else if (card.format === 3) {
-                return (<b key={ci}><i>{card.text}</i></b>)
-            } else if (card.format === 16) {
-                return (<code key={ci}>{card.text}</code>)
+            let node = card.text;
+            const format = card.format;
+
+            if ((format & 1) != 0) {
+                node = (<b>{node}</b>)
             }
+            if ((format & 1 << 1) != 0) {
+                node = (<i>{node}</i>)
+            }
+            if ((format & 1 << 2) != 0) {
+                node = (<s>{node}</s>)
+            }
+            if ((format & 1 << 3) != 0) {
+                node = (<u>{node}</u>)
+            }
+            if ((format & 1 << 4) != 0) {
+                node = (<code>{node}</code>)
+            }
+            if ((format & 1 << 5) != 0) {
+                node = (<sub>{node}</sub>)
+            }
+            if ((format & 1 << 6) != 0) {
+                node = (<sup>{node}</sup>)
+            }
+            if ((format & 1 << 7) != 0) {
+                node = (<span className="text-white bg-pink-600">{node}</span>)
+            }
+            return (<div className="contents" key={ci}>{node}</div>)
         } else if (card.type === "image") {
             const srcset = getResizedImageURLS(card.src, card.width, card.height);
             const payload: ImageCardPayload = {
@@ -111,6 +131,27 @@ function cardRenderer(childNodes) {
                 key: ci
             }
             return <cards.video payload={payload} key={ci}></cards.video>
+        } else if (card.type === "codeblock") {
+            const payload: CodeCardPayload = {
+                language: card.language,
+                code: card.code,
+                key: ci
+            }
+            return <cards.code payload={payload} key={ci}></cards.code>
+        } else if (card.type === "html") {
+            const payload: EmbedCardPayload = {
+                html: card.html,
+                key: ci
+            }
+            return <cards.html payload={payload} key={ci}></cards.html>
+        } else if (card.type === "callout") {
+            const payload: CalloutCardPayload = {
+                calloutEmoji: card.calloutEmoji,
+                calloutText: card.calloutText,
+                backgroundColor: card.backgroundColor,
+                key: ci
+            }
+            return <cards.callout payload={payload} key={ci}></cards.callout>
         } else {
             console.error(`Unable to render card: ${JSON.stringify(card)}`)
             return (<p key={ci}></p>)
@@ -137,17 +178,13 @@ export default async function GhostRenderer(props: GhostRendererProps) {
                     }
                 }
             } catch (e) {
-                console.log(section);
+                console.error('Unable to fix section:')
+                console.error(section);
             }
         }
 
-        try {
-            const { result } = await renderer.render(mobiledoc);
-            return result
-        } catch (e) {
-            console.log('Mobiledoc render error: ', e, mobiledoc);
-            return (<p>Rendering error</p>)
-        }
+        const { result } = await renderer.render(mobiledoc);
+        return result
     } else {
         const lexicalState = props.lexical as LexicalState;
         const lexicalCards = lexicalState.root.children;

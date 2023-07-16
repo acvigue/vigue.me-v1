@@ -24,11 +24,9 @@ export async function GET(request: NextRequest, { params }: { params: { slug: st
       } else {
         return new Response(`No PostOrPage found with UUID ${slug}`, { status: 400 });
       }
-      //url.pathname = `${Math.round(Date.now() / 1000)}-preview-${url.pathname}`;
     }
     return NextResponse.redirect(url);
   } catch (e) {
-    console.error(e);
     return new Response("Oops!", { status: 500 });
   }
 }

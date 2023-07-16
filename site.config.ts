@@ -39,6 +39,8 @@ export const config = {
       },
     ],
   },
+  matomoURL: "https://analytics.vigue.me",
+  matomoSiteID: "1"
 };
 
 export default config;

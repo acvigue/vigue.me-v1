@@ -17,6 +17,8 @@ import { ServerThemeProvider } from "@wits/next-themes";
 
 import { config } from "@/config";
 import { Metadata } from "next";
+import { Matomo } from "@/components/Matomo";
+import { Suspense } from "react";
 
 export const revalidate = 3600;
 
@@ -73,6 +75,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
           {/* misc */}
           <meta content="IE=edge" httpEquiv="X-UA-Compatible" />
+          <Suspense>
+            <Matomo />
+          </Suspense>
         </head>
         <body className="bg-white text-black dark:bg-gray-900 dark:text-white">
           <ThemeContext>

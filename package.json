@@ -20,6 +20,7 @@
     "@fontsource/lora": "^5.0.1",
     "@jitl/notion-api": "^0.2.2",
     "@notionhq/client": "^2.2.3",
+    "@socialgouv/matomo-next": "^1.6.1",
     "@tailwindcss/line-clamp": "^0.4.2",
     "@tailwindcss/typography": "^0.5.9",
     "@tryghost/admin-api": "^1.13.7",

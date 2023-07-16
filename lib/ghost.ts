@@ -128,7 +128,7 @@ async function _getPage(page_slug: string) {
     }
     return x;
   } catch (e) {
-    console.error(e);
+    console.error(`[ghost] getPage error: ${e}`);
     return {} as PostOrPageWithContent;
   }
 }
@@ -164,7 +164,7 @@ async function _getPost(post_slug: string) {
     }
     return x;
   } catch (e) {
-    console.error(e);
+    console.error(`[ghost] getPost error: ${e}`);
     return {} as PostOrPageWithContent;
   }
 }
