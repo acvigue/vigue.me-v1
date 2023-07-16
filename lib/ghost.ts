@@ -32,7 +32,7 @@ interface PostOrPageWithContent extends PostOrPage {
 
 export const getPages = cache(_getPages);
 async function _getPages(filters: Params) {
-  let x: Params = { ...filters, include: ["tags", "authors"] };
+  let x: Params = { ...filters, include: ["tags", "authors"], limit: 'all' };
   try {
     return (await contentAPI.pages.browse(x)) as PostsOrPages;
   } catch (e) {
@@ -43,7 +43,7 @@ async function _getPages(filters: Params) {
 
 export const getPosts = cache(_getPosts);
 async function _getPosts(filters: Params) {
-  let x: Params = { ...filters, include: ["tags", "authors"] };
+  let x: Params = { ...filters, include: ["tags", "authors"], limit: 'all' };
   try {
     return (await contentAPI.posts.browse(x)) as PostsOrPages;
   } catch (e) {
@@ -54,7 +54,7 @@ async function _getPosts(filters: Params) {
 
 export const getTags = cache(_getTags);
 async function _getTags(filters: Params) {
-  let x: Params = { ...filters };
+  let x: Params = { ...filters, limit: 'all' };
   try {
     return (await contentAPI.tags.browse(x)) as Tags;
   } catch (e) {
