@@ -1,5 +1,9 @@
 "use client";
 
+declare global {
+  interface Window { _paq: any; }
+}
+
 import { config } from "@/config"
 import { init, push } from "@socialgouv/matomo-next";
 import { usePathname, useSearchParams } from "next/navigation";
@@ -12,12 +16,14 @@ export const Matomo = () => {
   const [previousPath, setPreviousPath] = useState("");
 
   useEffect(() => {
-    if (!inited && config.matomoSiteID && config.matomoURL) {
+    if (!inited && config.matomoSiteID && config.matomoURL && !window._paq) {
       init({
         url: config.matomoURL,
         siteId: config.matomoSiteID,
+        jsTrackerFile: "main.js",
+        phpTrackerFile: "main.php",
         onInitialization: () => {
-          push(["requireCookieConsent"]);
+          push(["setRequestMethod", "POST"]);
           push(["enableHeartBeatTimer"]);
           push(["disableQueueRequest"]);
         },

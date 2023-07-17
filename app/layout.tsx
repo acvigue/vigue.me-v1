@@ -11,7 +11,6 @@ import "@fontsource/ibm-plex-mono";
 
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import Analytics from "@/components/Analytics";
 import ThemeContext from "@/components/ThemeContext";
 import { ServerThemeProvider } from "@wits/next-themes";
 
@@ -87,7 +86,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               <Footer />
             </div>
           </ThemeContext>
-          <Analytics />
         </body>
       </html>
     </ServerThemeProvider>

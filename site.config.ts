@@ -39,7 +39,7 @@ export const config = {
       },
     ],
   },
-  matomoURL: "https://analytics.vigue.me",
+  matomoURL: "https://dataingestion.vigue.me",
   matomoSiteID: "1"
 };
 
