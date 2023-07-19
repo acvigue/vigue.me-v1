@@ -1,4 +1,4 @@
-import Renderer, { MobiledocInput } from "react-mobiledoc-renderer";
+import Renderer, { MobiledocInput, RendererInput } from "react-mobiledoc-renderer";
 import "styles/mobiledoc.scss";
 
 import cards from "./mobiledoc/cards";
@@ -33,7 +33,7 @@ const options = {
   },
 };
 
-const renderer = new Renderer(options);
+const renderer = new Renderer(options as unknown as RendererInput);
 
 function cardRenderer(childNodes) {
   return childNodes.map((card, ci) => {

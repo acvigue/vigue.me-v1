@@ -1,8 +1,8 @@
-import { getPost, getPosts, getTag, getTags } from "@/lib/ghost";
+import { getPosts, getTag, getTags } from "@/lib/ghost";
 import { notFound } from "next/navigation";
 import PostsList from "@/components/PostsList";
 import { Tag } from "@tryghost/content-api";
-import { ResolvingMetadata, Metadata } from "next";
+import { Metadata } from "next";
 import config from "@/config";
 
 export const revalidate = 3600;

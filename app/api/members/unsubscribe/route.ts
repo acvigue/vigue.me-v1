@@ -1,5 +1,5 @@
 import { TSGhostAdminAPI } from "@ts-ghost/admin-api";
-import { NextRequest, NextResponse } from "next/server";
+import { NextRequest } from "next/server";
 
 const adminAPI = new TSGhostAdminAPI(`${process.env.GHOST_URL}/${process.env.GHOST_PATH}`, process.env.GHOST_ADMIN_KEY, "v5.0");
 

@@ -1,16 +1,13 @@
 import { getPosts, getPost } from "@/lib/ghost";
-import { GhostContent } from "@/lib/render";
 import GhostRenderer from "@/components/GhostRenderer";
-import { notFound, useRouter } from "next/navigation";
+import { notFound } from "next/navigation";
 import { format } from "date-fns";
 import Link from "next/link";
 import { FiArrowLeft, FiArrowRight } from "react-icons/fi";
-import { Metadata, ResolvingMetadata } from "next";
+import { Metadata } from "next";
 import { config } from "@/config";
-import Script from "next/script";
 import { getResizedImageURLS } from "@/lib/imgproxy";
 import SmartImage from "@/components/SmartImage";
-import { useSearchParams } from "next/navigation";
 import SignupCard from "@/components/mobiledoc/cards/SignupCard";
 import DividerCard from "@/components/mobiledoc/cards/DividerCard";
 

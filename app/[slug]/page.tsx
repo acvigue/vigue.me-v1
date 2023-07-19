@@ -1,9 +1,8 @@
 import { getPages, getPage, getPost } from "@/lib/ghost";
 import GhostRenderer from "@/components/GhostRenderer";
-import { ResolvingMetadata, Metadata } from "next";
+import { Metadata } from "next";
 import config from "@/config";
 import { notFound, redirect } from "next/navigation";
-import Script from "next/script";
 import DividerCard from "@/components/mobiledoc/cards/DividerCard";
 import SignupCard from "@/components/mobiledoc/cards/SignupCard";
 
