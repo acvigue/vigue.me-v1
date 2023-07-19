@@ -74,6 +74,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
           {/* misc */}
           <meta content="IE=edge" httpEquiv="X-UA-Compatible" />
+          <link rel="alternate" type="application/rss+xml" title={config.name} href={`${config.baseUrl}/feed.xml`} />
           <Suspense>
             <Matomo />
           </Suspense>
