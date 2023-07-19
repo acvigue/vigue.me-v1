@@ -22,7 +22,7 @@ import { Suspense } from "react";
 export const revalidate = 3600;
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://vigue.me"),
+  metadataBase: new URL(config.baseUrl),
   title: {
     template: `%s - ${config.name}`,
     default: config.name,
