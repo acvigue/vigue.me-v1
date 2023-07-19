@@ -1,10 +1,12 @@
 "use client";
 
 declare global {
-  interface Window { _paq: any; }
+  interface Window {
+    _paq: any;
+  }
 }
 
-import { config } from "@/config"
+import { config } from "@/config";
 import { init, push } from "@socialgouv/matomo-next";
 import { usePathname, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";

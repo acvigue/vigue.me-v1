@@ -10,8 +10,11 @@ export const revalidate = 3600;
 
 async function getData() {
   const page = await getPage("home");
-  const posts = await getPosts({filter: ["featured:true"], fields: ['feature_image', 'published_at', 'excerpt', 'slug', 'title', 'id', 'featured']});
-  
+  const posts = await getPosts({
+    filter: ["featured:true"],
+    fields: ["feature_image", "published_at", "excerpt", "slug", "title", "id", "featured"],
+  });
+
   if (!page) return null;
 
   return { page, posts };
@@ -23,36 +26,33 @@ export default async function Page() {
   if (!data) notFound();
 
   return (
-    <main className="mx-auto mb-8 lg:mb-16 flex w-full flex-col items-center justify-center">
-      <div className="mt-8 lg:mt-32 md:mb-16 flex flex-col gap-4 max-w-6xl w-full">
+    <main className="mx-auto mb-8 flex w-full flex-col items-center justify-center lg:mb-16">
+      <div className="mt-8 flex w-full max-w-6xl flex-col gap-4 md:mb-16 lg:mt-32">
         <div className="inline-flex flex-wrap items-end gap-4 md:gap-8">
-          <h4 className="inline text-lg md:text-2xl font-bold uppercase leading-none text-pink-600">Hey, I&apos;m {config.shortName}</h4>
+          <h4 className="inline text-lg font-bold uppercase leading-none text-pink-600 md:text-2xl">Hey, I&apos;m {config.shortName}</h4>
         </div>
-        <p className="lg:text-7xl text-5xl font-serif text-gray-700 dark:text-white">
-        I make things.
-        </p>
-        <div className="text-lg mt-2 dark:text-gray-400 text-gray-700 md:text-xl font-medium leading-tight antialiased Mobiledoc">
-          <GhostRenderer mobiledoc={data.page.mobiledoc} lexical={data.page.lexical}/>
+        <p className="font-serif text-5xl text-gray-700 dark:text-white lg:text-7xl">I make things.</p>
+        <div className="Mobiledoc mt-2 text-lg font-medium leading-tight text-gray-700 antialiased dark:text-gray-400 md:text-xl">
+          <GhostRenderer mobiledoc={data.page.mobiledoc} lexical={data.page.lexical} />
         </div>
-        <div className="flex flex-start flex-shrink">
-          <div className="text-white drop-shadow-2xl relative transform-gpu duration-300 group">
-            <div className="absolute w-full h-full transform-gpu dark:mix-blend-overlay bg-gray-400 opacity-20 dark:opacity-25 -rotate-6 rounded-lg -z-10 duration-300 group-hover:rotate-0 group-hover:scale-90"></div>
-            <Link href={`mailto:${config.email}`} className="text-sm font-bold uppercase flex flex-row items-center p-3 bg-pink-600 rounded-lg transform-gpu duration-300 group-hover:scale-90">
+        <div className="flex-start flex flex-shrink">
+          <div className="group relative transform-gpu text-white drop-shadow-2xl duration-300">
+            <div className="absolute -z-10 h-full w-full -rotate-6 transform-gpu rounded-lg bg-gray-400 opacity-20 duration-300 group-hover:rotate-0 group-hover:scale-90 dark:opacity-25 dark:mix-blend-overlay"></div>
+            <Link
+              href={`mailto:${config.email}`}
+              className="flex transform-gpu flex-row items-center rounded-lg bg-pink-600 p-3 text-sm font-bold uppercase duration-300 group-hover:scale-90"
+            >
               Get in touch <FiMail className="ml-2"></FiMail>
             </Link>
           </div>
         </div>
       </div>
-      <div className="prose max-w-6xl w-full dark:prose-dark mt-6">
-        <p className="text-sm font-bold uppercase text-pink-600">
-          Featured Content
-        </p>
-        <PostsList posts={data.posts}/>
-        <div className="w-full flex justify-end mt-4">
+      <div className="prose mt-6 w-full max-w-6xl dark:prose-dark">
+        <p className="text-sm font-bold uppercase text-pink-600">Featured Content</p>
+        <PostsList posts={data.posts} />
+        <div className="mt-4 flex w-full justify-end">
           <Link href={`/posts`}>
-            <p className="text-sm font-bold uppercase text-pink-600 hover:text-pink-400 transform duration-200">
-              View All
-            </p>
+            <p className="transform text-sm font-bold uppercase text-pink-600 duration-200 hover:text-pink-400">View All</p>
           </Link>
         </div>
       </div>

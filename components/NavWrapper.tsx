@@ -23,7 +23,7 @@ export default function NavWrapper({ children }) {
     <nav
       aria-label="Navigation Menu"
       className={
-        "sticky top-0 z-10 mx-auto pt-4 flex w-full flex-nowrap justify-center " +
+        "sticky top-0 z-10 mx-auto flex w-full flex-nowrap justify-center pt-4 " +
         "bg-white !bg-opacity-40 p-2 backdrop-blur-md dark:bg-gray-900 print:hidden " +
         (scrollY > 50 ? "border-b border-gray-100/50 dark:border-gray-800/50" : "")
       }

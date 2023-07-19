@@ -1,19 +1,16 @@
-'use client';
+"use client";
 
 import { useState } from "react";
 
 export interface ToggleCardPayload {
-    heading: string;
-    content: string;
-    key: number;
+  heading: string;
+  content: string;
+  key: number;
 }
 
-export default function ToggleCard({payload}: {payload: ToggleCardPayload}) {
-    const [showing, setShowing] = useState(false);
-    const containerClass = ``;
+export default function ToggleCard({ payload }: { payload: ToggleCardPayload }) {
+  const [showing, setShowing] = useState(false);
+  const containerClass = ``;
 
-    return (
-        <div className='p-4 bg-pink-600 bg-opacity-30 flex items-center rounded-md'>
-        </div>
-    );
+  return <div className="flex items-center rounded-md bg-pink-600 bg-opacity-30 p-4"></div>;
 }

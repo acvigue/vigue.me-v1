@@ -14,7 +14,7 @@ export async function GET(request: Request) {
     image_url: config.headshot,
     feed_url: `${config.baseUrl}/feed.rss`,
     generator: "X-VERCEL",
-    author: config.email
+    author: config.email,
   };
   const feed = new RSS(rssOptions);
 
@@ -25,7 +25,9 @@ export async function GET(request: Request) {
       url: `${site_url}/posts/${post.slug}`,
       date: post.published_at,
       author: config.email,
-      categories: post.tags.map(tag => { return tag.name })
+      categories: post.tags.map((tag) => {
+        return tag.name;
+      }),
     });
   });
 
@@ -38,7 +40,9 @@ export async function GET(request: Request) {
         url: `${site_url}/${page.slug}`,
         date: page.published_at,
         author: config.email,
-        categories: page.tags.map(tag => { return tag.name })
+        categories: page.tags.map((tag) => {
+          return tag.name;
+        }),
       });
     }
   });
@@ -52,7 +56,6 @@ export async function GET(request: Request) {
 
   return new Response(response, {
     status: 200,
-    headers: responseHeaders
+    headers: responseHeaders,
   });
 }
-

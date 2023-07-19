@@ -1,18 +1,15 @@
 export interface CalloutCardPayload {
-    calloutEmoji: string;
-    calloutText: string;
-    backgroundColor: string;
-    key: number;
+  calloutEmoji: string;
+  calloutText: string;
+  backgroundColor: string;
+  key: number;
 }
 
 export default function CalloutCard({ payload }: { payload: CalloutCardPayload }) {
-    return (
-        <div className='p-4 bg-pink-600 bg-opacity-30 flex items-center rounded-md'>
-            <div className="text-3xl mr-4">
-                {payload.calloutEmoji}
-            </div>
-            <div className="" dangerouslySetInnerHTML={{ __html: payload.calloutText }}>
-            </div>
-        </div>
-    );
+  return (
+    <div className="flex items-center rounded-md bg-pink-600 bg-opacity-30 p-4">
+      <div className="mr-4 text-3xl">{payload.calloutEmoji}</div>
+      <div className="" dangerouslySetInnerHTML={{ __html: payload.calloutText }}></div>
+    </div>
+  );
 }

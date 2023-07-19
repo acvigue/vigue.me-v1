@@ -72,4 +72,3 @@ export async function GET(request: Request) {
 
   return getServerSideSitemap(entries, responseHeaders);
 }
-

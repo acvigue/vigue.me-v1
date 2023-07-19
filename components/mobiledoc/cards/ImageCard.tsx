@@ -25,21 +25,24 @@ export default function ImageCard({ payload }: { payload: ImageCardPayload }) {
     src: payload.src,
     width: payload.width,
     height: payload.height,
-    srcSet: payload.srcset
-  }
+    srcSet: payload.srcset,
+  };
 
   return (
-    <div className="flex row justify-center">
-      <div className="relative group hover:scale-[0.98] transition transform-gpu duration-300">
-        <div className="absolute w-full h-full bg-gray-500 opacity-20 dark:opacity-25 -rotate-2 rounded group-hover:rotate-0 transition transform-gpu duration-300"></div>
+    <div className="row flex justify-center">
+      <div className="group relative transform-gpu transition duration-300 hover:scale-[0.98]">
+        <div className="absolute h-full w-full -rotate-2 transform-gpu rounded bg-gray-500 opacity-20 transition duration-300 group-hover:rotate-0 dark:opacity-25"></div>
         <div className="relative">
-          <SmartImage srcset={payload.srcset} sizes="90vw" alt={payload.alt} className='rounded-md object-fit group-hover:scale-1 max-w-full' style={{ maxHeight: 600 }} loading="lazy" onClick={() => setOpen(true)} />
-          <Lightbox
-            open={open}
-            close={() => setOpen(false)}
-            slides={[lbImage]}
-            plugins={[Zoom]}
+          <SmartImage
+            srcset={payload.srcset}
+            sizes="90vw"
+            alt={payload.alt}
+            className="object-fit group-hover:scale-1 max-w-full rounded-md"
+            style={{ maxHeight: 600 }}
+            loading="lazy"
+            onClick={() => setOpen(true)}
           />
+          <Lightbox open={open} close={() => setOpen(false)} slides={[lbImage]} plugins={[Zoom]} />
         </div>
       </div>
     </div>

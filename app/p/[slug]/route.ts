@@ -30,4 +30,3 @@ export async function GET(request: NextRequest, { params }: { params: { slug: st
     return new Response("Oops!", { status: 500 });
   }
 }
-

@@ -1,9 +1,7 @@
 export interface DividerCardPayload {
-    key: number;
+  key: number;
 }
 
-export default function DividerCard({payload}: {payload: DividerCardPayload}) {
-    return (
-        <div className="h-[1px] dark:bg-gray-700 bg-gray-300 mx-8"></div>
-    );
+export default function DividerCard({ payload }: { payload: DividerCardPayload }) {
+  return <div className="mx-8 h-[1px] bg-gray-300 dark:bg-gray-700"></div>;
 }

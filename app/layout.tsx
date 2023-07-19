@@ -25,7 +25,7 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://vigue.me"),
   title: {
     template: `%s - ${config.name}`,
-    default: config.name
+    default: config.name,
   },
   description: config.description,
   openGraph: {
@@ -34,7 +34,7 @@ export const metadata: Metadata = {
     url: config.baseUrl,
     title: {
       template: `%s - ${config.name}`,
-      default: config.name
+      default: config.name,
     },
     description: config.description,
     images: [
@@ -45,8 +45,8 @@ export const metadata: Metadata = {
         height: 720,
       },
     ],
-  }
-}
+  },
+};
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (

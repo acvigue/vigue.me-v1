@@ -1,49 +1,55 @@
 .Mobiledoc {
-    > *+* {
-        margin-top: max(3.2vmin,24px);
-        margin-bottom: 0;
+  > * + * {
+    margin-top: max(3.2vmin, 24px);
+    margin-bottom: 0;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  strong {
+    @apply text-pink-600;
+  }
+
+  ul {
+    @apply list-disc;
+  }
+
+  h2 {
+    @apply text-2xl;
+    @apply font-semibold;
+  }
+
+  h3 {
+    @apply text-xl;
+    @apply font-semibold;
+  }
+
+  a {
+    &:hover {
+      @apply text-pink-400;
     }
 
-    h1,h2,h3,h4,h5,h6,strong {
-        @apply text-pink-600;
-    }
+    text-decoration: underline;
+    @apply text-pink-600;
+  }
 
-    ul {
-        @apply list-disc;
-    }
+  blockquote:not([class]) {
+    position: relative;
+    font-style: italic;
+    padding: 0;
+  }
 
-    h2 {
-        @apply text-2xl;
-        @apply font-semibold;
-    } 
-
-    h3 {
-        @apply text-xl;
-        @apply font-semibold;
-    }
-
-    a {
-        &:hover {
-            @apply text-pink-400;
-        }
-
-        text-decoration: underline;
-        @apply text-pink-600;
-    }
-
-    blockquote:not([class]) {
-        position: relative;
-        font-style: italic;
-        padding: 0;
-    }
-    
-    blockquote:not([class])::before {
-        content: "";
-        position: absolute;
-        left: -1em;
-        top: 0;
-        bottom: 0;
-        width: 0.18rem;
-        @apply bg-pink-600
-    }
+  blockquote:not([class])::before {
+    content: "";
+    position: absolute;
+    left: -1em;
+    top: 0;
+    bottom: 0;
+    width: 0.18rem;
+    @apply bg-pink-600;
+  }
 }

@@ -32,7 +32,7 @@ export function getResizedImageURLS(url: string, width: number, height: number) 
           size: 32, // Optional, specify the signature size. Defaults to 32
         },
       });
-      
+
     const src: Srcset = {
       src: `${process.env.IMGPROXY_URL}${temp}`,
       width: size.width,
@@ -42,4 +42,3 @@ export function getResizedImageURLS(url: string, width: number, height: number) 
   }
   return srcs;
 }
-
