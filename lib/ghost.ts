@@ -23,7 +23,7 @@ const untypedAdminAPI = new GhostAdminAPI({
   version: "v5.0",
 });
 
-const adminAPI = new TSGhostAdminAPI(`${process.env.GHOST_URL}/${process.env.GHOST_PATH}`, process.env.GHOST_ADMIN_KEY, "v5.0");
+const adminAPI = new TSGhostAdminAPI(process.env.GHOST_URL, process.env.GHOST_ADMIN_KEY, "v5.0");
 
 interface PostOrPageWithContent extends PostOrPage {
   mobiledoc: Object | null;
@@ -110,10 +110,11 @@ async function _getPage(page_slug: string) {
           throw new Error("UUID not a draft page!");
         }
       } else {
+        console.error(allDraftPages)
         throw new Error("Couldn't fetch draft pages!");
       }
     }
-
+    
     const page = await untypedAdminAPI.pages.read({ slug: page_slug }, { include: "authors,tags", formats: "mobiledoc,lexical" });
 
     if (!page.uuid) {
