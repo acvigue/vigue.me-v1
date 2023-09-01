@@ -32,7 +32,7 @@ export const config = {
       },
       {
         name: "LinkedIn",
-        icon: "FiLinkedIn",
+        icon: "FiLinkedin",
         href: "https://linkedin.com/in/aidenvigue",
       },
     ],
