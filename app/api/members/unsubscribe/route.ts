@@ -1,7 +1,7 @@
 import { TSGhostAdminAPI } from "@ts-ghost/admin-api";
 import { NextRequest } from "next/server";
 
-const adminAPI = new TSGhostAdminAPI(`${process.env.GHOST_URL}/${process.env.GHOST_PATH}`, process.env.GHOST_ADMIN_KEY, "v5.0");
+const adminAPI = new TSGhostAdminAPI(process.env.GHOST_URL, process.env.GHOST_ADMIN_KEY, "v5.0");
 
 export async function POST(request: NextRequest) {
   const reqData = await request.json();
