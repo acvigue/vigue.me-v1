@@ -2,7 +2,7 @@ export const config = {
   name: "Aiden Vigue",
   shortName: "Aiden",
   roles: ["I'm a Software Engineer.", "I create websites.", "I design user interfaces.", "I'm an eager learner.", "I make things."],
-  headshot: "https://images.weserv.nl/?url=https://github.com/acvigue.png&h=300&w=300&fit=cover&mask=circle&l=9&output=webp&q=63",
+  headshot: "https://images.weserv.nl/?url=https://github.com/acvigue.png&h=300&w=300&fit=cover&mask=circle&l=9&output=webp&q=63&v=2",
   description: "I'm a freshman at Purdue studying Computer Science with a focus on embedded engineering.",
   email: "aiden@vigue.me",
   username: "acvigue",
