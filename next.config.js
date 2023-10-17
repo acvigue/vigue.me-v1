@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 module.exports = {
   reactStrictMode: true,
-  experimental: { appDir: true, serverActions: true },
+  experimental: { serverActions: true },
   images: {
     domains: ["vigue.me", "dnzye6trx9wog.cloudfront.net", "cdn.vigue.me", "images.weserv.nl"],
   },
