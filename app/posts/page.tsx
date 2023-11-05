@@ -4,7 +4,7 @@ import PostsList from "@/components/PostsList";
 import Link from "next/link";
 import { Metadata } from "next";
 
-export const revalidate = 3600;
+export const revalidate = 604800;
 
 export const metadata: Metadata = {
   title: "All Posts",

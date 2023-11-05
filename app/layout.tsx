@@ -19,7 +19,7 @@ import { Metadata } from "next";
 import { Matomo } from "@/components/Matomo";
 import { Suspense } from "react";
 
-export const revalidate = 3600;
+export const revalidate = 604800;
 
 export const metadata: Metadata = {
   metadataBase: new URL(config.baseUrl),

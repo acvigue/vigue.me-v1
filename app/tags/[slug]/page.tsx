@@ -5,7 +5,7 @@ import { Tag } from "@tryghost/content-api";
 import { Metadata } from "next";
 import config from "@/config";
 
-export const revalidate = 3600;
+export const revalidate = 604800;
 
 export async function generateMetadata({ params }): Promise<Metadata> {
   // read route params

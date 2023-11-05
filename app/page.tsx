@@ -6,7 +6,7 @@ import Link from "next/link";
 import { FiMail } from "react-icons/fi";
 import GhostRenderer from "@/components/GhostRenderer";
 
-export const revalidate = 3600;
+export const revalidate = 604800;
 
 async function getData() {
   const page = await getPage("home");

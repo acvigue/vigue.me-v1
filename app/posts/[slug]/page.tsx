@@ -11,7 +11,7 @@ import SmartImage from "@/components/SmartImage";
 import SignupCard from "@/components/mobiledoc/cards/SignupCard";
 import DividerCard from "@/components/mobiledoc/cards/DividerCard";
 
-export const revalidate = 3600;
+export const revalidate = 604800;
 const uuidV4Regex = /^[A-F\d]{8}-[A-F\d]{4}-4[A-F\d]{3}-[89AB][A-F\d]{3}-[A-F\d]{12}$/i;
 const isValidV4UUID = (uuid) => uuidV4Regex.test(uuid);
 

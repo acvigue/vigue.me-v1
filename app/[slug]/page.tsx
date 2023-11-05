@@ -6,7 +6,7 @@ import { notFound, redirect } from "next/navigation";
 import DividerCard from "@/components/mobiledoc/cards/DividerCard";
 import SignupCard from "@/components/mobiledoc/cards/SignupCard";
 
-export const revalidate = 3600;
+export const revalidate = 604800;
 
 export async function generateMetadata({ params }): Promise<Metadata> {
   // read route params
