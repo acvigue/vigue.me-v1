@@ -67,7 +67,7 @@ function cardRenderer(childNodes) {
           {cardContents}
         </a>
       );
-    } else if (card.type === "text") {
+    } else if (card.type === "text" || card.type === "extended-text") {
       let node = card.text;
       const format = card.format;
 
