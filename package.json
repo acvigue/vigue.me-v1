@@ -31,7 +31,7 @@
     "@wits/next-themes": "^0.2.14",
     "autoprefixer": "^10.4.16",
     "base64url": "^3.0.1",
-    "date-fns": "^2.29.3",
+    "date-fns": "^3.0.0",
     "feed": "^4.2.2",
     "gemoji": "^8.0.0",
     "katex": "^0.16.9",
