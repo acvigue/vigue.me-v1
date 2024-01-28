@@ -1,9 +1,15 @@
+'use client'
+
 import Link from "next/link";
 import NavWrapper from "@/components/NavWrapper";
 import config from "@/config";
 import Image from "next/image";
+import { useState } from "react";
+import { FiMenu } from "react-icons/fi";
 
 export default function Navbar() {
+  const [navOpen, setNavOpen] = useState(false);
+
   return (
     <NavWrapper>
       <div className="flex w-full max-w-6xl flex-nowrap items-center justify-between">
@@ -18,7 +24,7 @@ export default function Navbar() {
             </Link>
           </div>
         </div>
-        <div className="flex">
+        <div className="lg:flex-1 lg:flex justify-end hidden">
           {config.nav.map(({ name, href }, i, a) => (
             <div key={name} className="my-1 flex items-center">
               <Link
@@ -30,6 +36,19 @@ export default function Navbar() {
             </div>
           ))}
         </div>
+        <div className="flex-1 justify-end flex lg:hidden pr-4 relative">
+          <FiMenu size={24} onClick={() => setNavOpen(!navOpen)} style={{ 'cursor': 'pointer' }} />
+          <div className={`transform-gpu duration-150 absolute shadow-2xl lg:hidden flex flex-col gap-[2px] bg-gray-700 rounded-lg overflow-clip top-10 min-w-64 ${navOpen ? 'opacity-100' : 'opacity-0'}`}>
+            {config.nav.map(({ name, href }, i, a) => (
+              <Link
+                onClick={() => setNavOpen(false)}
+                href={href} key={name} className={`flex w-full justify-start bg-gray-800 dark:hover:bg-gray-800/20 py-2 px-4 ${!navOpen ? 'pointer-events-none' : null}`}>
+                <span>{name}</span>
+              </Link>
+            ))}
+          </div>
+        </div>
+
       </div>
     </NavWrapper>
   );

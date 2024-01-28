@@ -26,6 +26,11 @@ module.exports = {
         permanent: true,
       },
       {
+        source: "/linkedin",
+        destination: "https://linkedin.com/in/aidenvigue",
+        permanent: true,
+      },
+      {
         source: "/resume",
         destination: "https://blogcdn.vigue.me/Resume.pdf",
         permanent: true,

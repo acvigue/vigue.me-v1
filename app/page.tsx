@@ -5,6 +5,7 @@ import config from "site.config";
 import Link from "next/link";
 import { FiMail } from "react-icons/fi";
 import GhostRenderer from "@/components/GhostRenderer";
+import SignupCard from "@/components/mobiledoc/cards/SignupCard";
 
 export const revalidate = 604800;
 
@@ -55,6 +56,9 @@ export default async function Page() {
             <p className="transform text-sm font-bold uppercase text-pink-600 duration-200 hover:text-pink-400">View All</p>
           </Link>
         </div>
+      </div>
+      <div className="prose mt-6 w-full max-w-6xl dark:prose-dark">
+        <SignupCard payload={{}}></SignupCard>
       </div>
     </main>
   );

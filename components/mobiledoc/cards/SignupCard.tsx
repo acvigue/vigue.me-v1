@@ -15,25 +15,29 @@ export default function SignupCard({ payload }: { payload: any }) {
     formState: { errors },
   } = useForm<FormFields>();
   const [success, setSuccess] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
   return (
     <div className="flex flex-col gap-4 rounded-md bg-gray-500 bg-opacity-30 p-8">
-      <span className="mr-4 font-mono text-3xl font-bold text-pink-600">{config.newsletterSignupHeading}</span>
-      <span className="text-md">{config.newsletterSignupBody}</span>
+      <span className="mr-4 text-3xl font-bold text-pink-600">{config.newsletterSignupHeading}</span>
+      <span className="text-md text-gray-200">{config.newsletterSignupBody}</span>
       <Form
         className="flex items-center justify-start gap-4"
         action="/api/members/subscribe" // Send post request with the FormData
         encType={"application/json"}
         onSuccess={() => {
           setSuccess(true);
+          setLoading(false);
         }}
         onError={async (resp) => {
           const responseText = await resp.response.text();
           setSuccess(false);
+          setLoading(false);
           setError(responseText);
         }}
         onSubmit={() => {
+          setLoading(true);
           setSuccess(false);
           setError("");
         }}
@@ -47,7 +51,7 @@ export default function SignupCard({ payload }: { payload: any }) {
               message: "Entered value does not match email format",
             },
           })}
-          className={`rounded-md bg-gray-500 p-3 text-gray-200 ${(errors.email || error !== "") && "border-[2px] border-red-400"}`}
+          className={`rounded-md bg-gray-500 p-3 text-gray-200 placeholder:text-gray-200 ${(errors.email || error !== "") && "border-[2px] border-red-400"}`}
           placeholder="Email Address"
         />
 
@@ -55,7 +59,8 @@ export default function SignupCard({ payload }: { payload: any }) {
           <div className="absolute -z-10 h-full w-full -rotate-6 transform-gpu rounded-lg bg-gray-400 opacity-20 duration-300 group-hover:rotate-0 group-hover:scale-90 dark:opacity-25 dark:mix-blend-overlay"></div>
           <input
             type="submit"
-            className="flex transform-gpu flex-row items-center rounded-lg bg-pink-600 p-3 text-sm font-bold uppercase duration-300 group-hover:scale-90"
+            disabled={loading}
+            className="flex transform-gpu flex-row items-center rounded-lg bg-pink-600 p-3 px-5 text-sm font-bold uppercase duration-300 group-hover:scale-90 disabled:group-hover:scale-100 disabled:opacity-50 disabled:cursor-not-allowed"
           />
         </div>
       </Form>

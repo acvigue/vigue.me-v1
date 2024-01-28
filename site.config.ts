@@ -15,6 +15,7 @@ export const config = {
   nav: [
     { name: "About", href: "/about" },
     { name: "Posts", href: "/posts" },
+    { name: "LinkedIn", href: "/linkedin" },
     { name: "Resume", href: "/resume" },
   ],
   footer: {
@@ -26,14 +27,19 @@ export const config = {
         href: "https://github.com/acvigue/vigue.me",
       },
       {
-        name: "RSS Feed",
-        icon: "FiRss",
-        href: "https://vigue.me/feed.xml",
-      },
-      {
         name: "LinkedIn",
         icon: "FiLinkedin",
-        href: "https://linkedin.com/in/aidenvigue",
+        href: "/linkedin",
+      },
+      {
+        name: "Spotify",
+        icon: "FiMusic",
+        href: "https://open.spotify.com/user/w3g33ot2c4zxlxtzy15i7ldxi?si=f676f03ce5c745c2",
+      },
+      {
+        name: "Instagram",
+        icon: "FiInstagram",
+        href: "https://instagram.com/aiden.vigue",
       },
     ],
   },
