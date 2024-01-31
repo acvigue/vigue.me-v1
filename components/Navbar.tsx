@@ -38,7 +38,7 @@ export default function Navbar() {
         </div>
         <div className="flex-1 justify-end flex lg:hidden relative">
           <FiMenu size={24} onClick={() => setNavOpen(!navOpen)} style={{ 'cursor': 'pointer' }} />
-          <div className={`transform-gpu duration-150 absolute shadow-2xl drop-shadow-2xl bg-gray-200 dark:bg-gray-700/50 lg:hidden flex flex-col gap-[2px] dark:border-gray-700/50 border-2 rounded-lg overflow-clip top-10 min-w-64 z-30 ${navOpen ? 'opacity-100' : 'opacity-0'}`}>
+          <div className={`transform-gpu duration-150 absolute shadow-2xl drop-shadow-2xl bg-gray-200 dark:bg-gray-600 lg:hidden flex flex-col gap-[2px] dark:border-gray-600 border-gray-200 border-2 rounded-lg overflow-clip top-10 min-w-64 z-30 ${navOpen ? 'opacity-100' : 'opacity-0'}`}>
             {config.nav.map(({ name, href }, i, a) => (
               <Link
                 onClick={() => setNavOpen(false)}
