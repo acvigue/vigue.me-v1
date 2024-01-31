@@ -75,8 +75,8 @@ export default async function Page({ params }) {
   const feature_image_srcset = getResizedImageURLS(post.feature_image, 2000, 1500);
 
   return (
-    <main className="mb-16 flex w-full flex-col items-center justify-center pt-4">
-      <div className="container relative mx-auto mb-8 md:mb-16 lg:max-w-6xl">
+    <main className="mb-8 flex w-full flex-col items-center justify-center pt-4">
+      <div className="container relative mx-auto mb-8 md:mb-8 lg:max-w-6xl">
         <div className="flex flex-col items-center text-white">
           <h1 className="mb-4 w-3/4 text-center text-4xl font-extrabold text-pink-600 md:w-2/3 lg:w-full lg:text-5xl">{post.title}</h1>
           <h4 className="text-md inline text-center font-semibold leading-none text-pink-600">

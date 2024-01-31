@@ -64,7 +64,7 @@ export default async function Page({ params: { slug } }) {
     const hasNoTitle = page.tags?.find(({ name }) => name === "#notitle") ?? false;
     return (
       <>
-        <main className="mx-auto mb-16 mt-6 flex w-full max-w-5xl flex-col items-start justify-center">
+        <main className="mx-auto mb-8 mt-6 flex w-full max-w-5xl flex-col items-start justify-center">
           {!hasNoTitle && <h1 className="mb-4 text-3xl font-bold tracking-tight text-pink-600 md:text-5xl">{page.title}</h1>}
           <div className="Mobiledoc w-full antialiased">
             <GhostRenderer mobiledoc={page.mobiledoc} lexical={page.lexical} />

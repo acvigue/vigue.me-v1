@@ -2,7 +2,7 @@ import Link from "next/link";
 
 function NotFound() {
   return (
-    <div className="mx-auto mb-16 flex max-w-4xl flex-col items-start justify-center space-y-8">
+    <div className="mx-auto mb-8 flex max-w-4xl flex-col items-start justify-center space-y-8">
       <h1 className="mb-4 text-3xl font-bold tracking-tight text-pink-600 md:text-5xl">404 – Not Found</h1>
       <p className="mb-8 text-gray-600 dark:text-gray-400">
         It seems what you&apos;re trying to find doesn&apos;t exist, or you spelled something wrong.
