@@ -51,7 +51,7 @@ export default function SignupCard({ payload }: { payload: any }) {
               message: "Entered value does not match email format",
             },
           })}
-          className={`rounded-md dark:bg-gray-500 bg-white p-3 border border-gray-400 text-gray-200 placeholder:text-gray-700 dark:placeholder:text-gray-200 ${(errors.email || error !== "") && "border-[2px] border-red-400"}`}
+          className={`rounded-md dark:bg-gray-500 bg-white p-3 border border-gray-400 text-gray-700 dark:text-gray-200 placeholder:text-gray-700 dark:placeholder:text-gray-200 ${(errors.email || error !== "") && "border-[2px] border-red-400"}`}
           placeholder="Email Address"
         />
 
