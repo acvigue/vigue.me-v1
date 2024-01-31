@@ -37,7 +37,7 @@ export default async function Page() {
         <div className="Mobiledoc mt-2 mb-4 md:mb-0 text-lg font-medium leading-tight text-gray-700 antialiased dark:text-gray-400 md:text-xl">
           <GhostRenderer mobiledoc={data.page.mobiledoc} lexical={data.page.lexical} />
         </div>
-        <div className="flex-start flex w-full gap-4 items-center justify-between">
+        <div className="flex-start flex w-full gap-4 items-center justify-between h-14">
           <div className="group relative transform-gpu text-white drop-shadow-2xl duration-300">
             <div className="absolute -z-10 h-full w-full -rotate-6 transform-gpu rounded-lg bg-gray-400 opacity-20 duration-300 group-hover:rotate-0 group-hover:scale-90 dark:opacity-25 dark:mix-blend-overlay"></div>
             <Link
