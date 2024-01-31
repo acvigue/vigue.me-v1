@@ -29,12 +29,12 @@ export default async function Page() {
 
   return (
     <main className="mx-auto mb-8 flex w-full flex-col items-center justify-center lg:mb-8">
-      <div className="mt-8 flex w-full max-w-6xl flex-col gap-4 md:mb-16 lg:mt-32">
-        <div className="inline-flex flex-wrap items-end gap-4 md:gap-8">
+      <div className="md:mt-16 mt-8 flex w-full max-w-6xl flex-col gap-4 md:mb-16 mb-8">
+        <div className="inline-flex flex-wrap items-end gap-4">
           <h4 className="inline text-lg font-semibold uppercase leading-none text-pink-600 md:text-2xl">Hey, I&apos;m {config.shortName}</h4>
         </div>
         <p className="font-serif text-5xl text-gray-700 dark:text-white lg:text-7xl">I make things.</p>
-        <div className="Mobiledoc mt-2 text-lg font-medium leading-tight text-gray-700 antialiased dark:text-gray-400 md:text-xl">
+        <div className="Mobiledoc mt-2 mb-4 md:mb-0 text-lg font-medium leading-tight text-gray-700 antialiased dark:text-gray-400 md:text-xl">
           <GhostRenderer mobiledoc={data.page.mobiledoc} lexical={data.page.lexical} />
         </div>
         <div className="flex-start flex w-full gap-4 items-center justify-between">
