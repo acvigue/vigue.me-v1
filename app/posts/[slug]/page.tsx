@@ -82,7 +82,7 @@ export default async function Page({ params }) {
           <h4 className="text-md inline text-center font-semibold leading-none text-pink-600">
             <i>{post.excerpt}</i>
           </h4>
-          <div className="my-4 -ml-px flex items-center text-xs uppercase tracking-wide text-purple-800 dark:text-purple-200">
+          <div className="my-4 -ml-px flex items-center text-xs uppercase tracking-wide text-pink-600">
             <svg width="24" height="24" fill="none" viewBox="0 0 24 24" className="-ml-1 h-4 -translate-y-px transform opacity-75">
               <path
                 stroke="currentColor"

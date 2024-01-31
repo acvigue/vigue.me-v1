@@ -30,7 +30,7 @@ export default function BookmarkCard({ payload }: { payload: BookmarkCardPayload
             {payload.metadata.description}
           </span>
         </div>
-        <div className="mt-2 inline-flex w-fit items-center overflow-clip rounded-md bg-gray-700">
+        <div className="mt-2 inline-flex w-fit items-center overflow-clip rounded-md dark:bg-gray-700">
           <div className="mr-4">
             <img src={payload.metadata.icon} alt="bookmark icon" className="h-6" />
           </div>
