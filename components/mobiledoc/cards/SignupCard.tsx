@@ -60,6 +60,7 @@ export default function SignupCard({ payload }: { payload: any }) {
           <input
             type="submit"
             disabled={loading}
+            value="Submit"
             className="flex transform-gpu flex-row items-center rounded-lg bg-pink-600 p-4 px-5 text-sm font-semibold uppercase duration-300 group-hover:scale-90 disabled:group-hover:scale-100 disabled:opacity-50 disabled:cursor-not-allowed"
           />
         </div>
