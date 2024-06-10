@@ -18,7 +18,7 @@ export default function Navbar() {
             <Link href="/" className="flex items-center justify-between rounded text-gray-900 dark:text-gray-100 ">
               <span className="flex select-none items-center justify-between pr-4 text-sm" aria-hidden="true">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <Image width={40} height={40} src={config.headshot} className="w-8 md:w-10" alt="headshot image" />
+                {/*<Image width={40} height={40} src={config.headshot} className="w-8 md:w-10" alt="headshot image" />*/}
               </span>
               <span className="font-bold">{config.name}</span>
             </Link>
