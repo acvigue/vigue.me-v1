@@ -18,8 +18,6 @@
     "@fontsource/inter": "^5.0.13",
     "@fontsource/jetbrains-mono": "^5.0.15",
     "@fontsource/lora": "^5.0.8",
-    "@jitl/notion-api": "^0.2.2",
-    "@notionhq/client": "^2.2.13",
     "@socialgouv/matomo-next": "^1.8.0",
     "@tailwindcss/line-clamp": "^0.4.2",
     "@tailwindcss/typography": "^0.5.10",
