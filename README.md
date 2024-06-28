@@ -1,4 +1,7 @@
-# vigue.me
+# vigue.me-v1
+
+##ARCHIVED
+Please see new version [here](https://github.com/acvigue/vigue.me)
 
 My personal blog.
 
